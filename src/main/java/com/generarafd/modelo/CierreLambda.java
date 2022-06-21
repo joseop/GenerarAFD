@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class CierreLambda {
-    private final Elemento elemento = new Elemento();
+    private final Elemento elementos = new Elemento();
     private static final ArrayList<Boolean> yaProcesado = new ArrayList<>();
-    private final int[][] matrizCierreLambda = new int[elemento.getAceptacion()][elemento.getAceptacion()];
+    private final int[][] matrizCierreLambda = new int[elementos.getAceptacion()][elementos.getAceptacion()];
 
     public CierreLambda() {
         buscarCierreLambda();
@@ -20,10 +20,10 @@ public class CierreLambda {
             int k = 0;
             matrizCierreLambda[i][k] = i + 1;
             k++;
-            for (int j = 0; j < elemento.getSizeER(); j++) {
-                if (existeEnFila(elemento.getTransicionER(j).getEstadoOrigen(), i) && !yaProcesado.get(j)) {
-                    if (Objects.equals(elemento.getTransicionER(j).getSimboloIngresado(), "λ")) {
-                        matrizCierreLambda[i][k] = elemento.getTransicionER(j).getEstadoFinal();
+            for (int j = 0; j < elementos.getSizeER(); j++) {
+                if (existeEnFila(elementos.getTransicionER(j).getEstadoOrigen(), i) && !yaProcesado.get(j)) {
+                    if (Objects.equals(elementos.getTransicionER(j).getSimboloIngresado(), "λ")) {
+                        matrizCierreLambda[i][k] = elementos.getTransicionER(j).getEstadoFinal();
                         yaProcesado.set(j, true);
                         k++;
                         j = 0;
@@ -34,13 +34,13 @@ public class CierreLambda {
     }
 
     private void crearArrayListBoolean() {
-        for (int m = 0; m < elemento.getAceptacion(); m++) {
+        for (int m = 0; m < elementos.getAceptacion(); m++) {
             yaProcesado.add(false);
         }
     }
 
     private void convertirArrayListAFalso() {
-        for (int m = 0; m < elemento.getAceptacion(); m++) {
+        for (int m = 0; m < elementos.getAceptacion(); m++) {
             yaProcesado.add(m, false);
         }
     }

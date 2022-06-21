@@ -6,7 +6,7 @@ import java.util.Stack;
 public class LeerER {
 
     private final String expresionRegular;
-    private final Elemento elemento = new Elemento();
+    private final Elemento elementos = new Elemento();
     private final ConstruccionBasicaThompson operacion = new ConstruccionBasicaThompson();
 
     public LeerER(String expresionRegular) {
@@ -15,7 +15,7 @@ public class LeerER {
     }
 
     private void iniciarConexion() {
-        elemento.addTransicionER(operacion.reescribirExpresion(expresionRegular, 1));
+        elementos.addTransicionER(operacion.reescribirExpresion(expresionRegular, 1));
         conectarTransiciones();
         capturarSimbolosDeLaER();
         new CierreLambda();
@@ -23,10 +23,10 @@ public class LeerER {
 
     private void conectarTransiciones() {
         int i = 0;
-        while (i < elemento.getSizeER()) {
-            if (elemento.getTransicionER(i).getSimboloIngresado().length() > 1) {
-                nuevaTransicion(elemento.getTransicionER(i).getEstadoOrigen(), elemento.getTransicionER(i).getSimboloIngresado());
-                elemento.borrarER(i);
+        while (i < elementos.getSizeER()) {
+            if (elementos.getTransicionER(i).getSimboloIngresado().length() > 1) {
+                nuevaTransicion(elementos.getTransicionER(i).getEstadoOrigen(), elementos.getTransicionER(i).getSimboloIngresado());
+                elementos.borrarER(i);
                 i = 0;
             } else {
                 i++;
@@ -39,35 +39,35 @@ public class LeerER {
         if (s != 0) {
             String substring = expresionReg.substring(s + 1);
             if ((expresionReg.charAt(s) == '|')) {
-                elemento.incrementarER(estadoBase, 4);
-                elemento.addTransicionesER(operacion.expresionOR(expresionReg.substring(0, s), substring, estadoBase));
+                elementos.incrementarER(estadoBase, 4);
+                elementos.addTransicionesER(operacion.expresionOR(expresionReg.substring(0, s), substring, estadoBase));
             }
             if ((expresionReg.charAt(s) == '.')) {
-                elemento.incrementarER(estadoBase, 1);
-                elemento.addTransicionesER(operacion.expresionAND(expresionReg.substring(0, s), substring, estadoBase));
+                elementos.incrementarER(estadoBase, 1);
+                elementos.addTransicionesER(operacion.expresionAND(expresionReg.substring(0, s), substring, estadoBase));
             }
         } else {
             if (expresionReg.charAt(0) == '(') {
                 String substring = expresionReg.substring(1, expresionReg.length() - 2);
                 if ((expresionReg.charAt(expresionReg.length() - 1) == '*')) {
-                    elemento.incrementarER(estadoBase, 2);
-                    elemento.addTransicionesER(operacion.superIndiceAsterisco(substring, estadoBase));
+                    elementos.incrementarER(estadoBase, 2);
+                    elementos.addTransicionesER(operacion.superIndiceAsterisco(substring, estadoBase));
 
                 } else if ((expresionReg.charAt(expresionReg.length() - 1) == '+')) {
-                    elemento.incrementarER(estadoBase, 2);
-                    elemento.addTransicionesER(operacion.superIndiceMas(substring, estadoBase));
+                    elementos.incrementarER(estadoBase, 2);
+                    elementos.addTransicionesER(operacion.superIndiceMas(substring, estadoBase));
 
                 } else if ((expresionReg.charAt(expresionReg.length() - 1) == ')')) {
-                    elemento.addTransicionER(operacion.reescribirExpresion(expresionReg.substring(1, expresionReg.length() - 1), estadoBase));
+                    elementos.addTransicionER(operacion.reescribirExpresion(expresionReg.substring(1, expresionReg.length() - 1), estadoBase));
                 }
             } else {
                 if ((expresionReg.charAt(expresionReg.length() - 1) == '*')) {
-                    elemento.incrementarER(estadoBase, 2);
-                    elemento.addTransicionesER(operacion.superIndiceAsterisco(expresionReg.substring(0, expresionReg.length() - 1), estadoBase));
+                    elementos.incrementarER(estadoBase, 2);
+                    elementos.addTransicionesER(operacion.superIndiceAsterisco(expresionReg.substring(0, expresionReg.length() - 1), estadoBase));
 
                 } else if ((expresionReg.charAt(expresionReg.length() - 1) == '+')) {
-                    elemento.incrementarER(estadoBase, 2);
-                    elemento.addTransicionesER(operacion.superIndiceMas(expresionReg.substring(0, expresionReg.length() - 1), estadoBase));
+                    elementos.incrementarER(estadoBase, 2);
+                    elementos.addTransicionesER(operacion.superIndiceMas(expresionReg.substring(0, expresionReg.length() - 1), estadoBase));
                 }
             }
         }
@@ -98,17 +98,17 @@ public class LeerER {
     }
 
     private void capturarSimbolosDeLaER() {
-        for (int i = 0; i < elemento.getSizeER(); i++) {
+        for (int i = 0; i < elementos.getSizeER(); i++) {
             String nulo = "λ";
-            if (!Objects.equals(elemento.getTransicionER(i).getSimboloIngresado(), nulo) && !existeEnSimbolos(elemento.getTransicionER(i).getSimboloIngresado())) {
-                elemento.addSimbolo(elemento.getTransicionER(i).getSimboloIngresado());
+            if (!Objects.equals(elementos.getTransicionER(i).getSimboloIngresado(), nulo) && !existeEnSimbolos(elementos.getTransicionER(i).getSimboloIngresado())) {
+                elementos.addSimbolo(elementos.getTransicionER(i).getSimboloIngresado());
             }
         }
     }
 
     private boolean existeEnSimbolos(String simbolo) {
-        for (int i = 0; i < elemento.getSizeSimbolos(); i++) {
-            if (elemento.getSimbolo(i).equals(simbolo)) {
+        for (int i = 0; i < elementos.getSizeSimbolos(); i++) {
+            if (elementos.getSimbolo(i).equals(simbolo)) {
                 return true;
             }
         }

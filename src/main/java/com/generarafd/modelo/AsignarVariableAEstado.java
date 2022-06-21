@@ -3,19 +3,19 @@ package com.generarafd.modelo;
 
 public class AsignarVariableAEstado {
     private static final ConstruirAFDSinLambda estados = new ConstruirAFDSinLambda();
-    private static final Elemento elemento = new Elemento();
+    private final Elemento elementos = new Elemento();
 
     public AsignarVariableAEstado() {
         convertirAFD();
     }
 
     public void convertirAFD() {
-        for (int i = 0; i < elemento.getSizeAFD(); i++) {
-            TransicionAFD transicionAFD = new TransicionAFD(elemento.getTransicionAFD(i).isAceptacion(),
-                    estadoPosicion(elemento.getTransicionAFD(i).getEstadoOrigen()),
-                    estadoPosicion(elemento.getTransicionAFD(i).getEstadoFinal()),
-                    elemento.getTransicionAFD(i).getSimboloIngresado());
-            elemento.addAFDN(transicionAFD);
+        for (int i = 0; i < elementos.getSizeAFD(); i++) {
+            TransicionAFD transicionAFD = new TransicionAFD(elementos.getTransicionAFD(i).isAceptacion(),
+                    estadoPosicion(elementos.getTransicionAFD(i).getEstadoOrigen()),
+                    estadoPosicion(elementos.getTransicionAFD(i).getEstadoFinal()),
+                    elementos.getTransicionAFD(i).getSimboloIngresado());
+            elementos.addAFDN(transicionAFD);
         }
     }
 

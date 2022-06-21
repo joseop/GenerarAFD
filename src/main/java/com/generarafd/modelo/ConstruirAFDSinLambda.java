@@ -5,28 +5,26 @@ import java.util.Arrays;
 
 public class ConstruirAFDSinLambda {
 
-    private final Elemento elemento = new Elemento();
-    static final ArrayList<int[]> estadosEnVectorDeInt = new ArrayList<>();
+    private final Elemento elementos = new Elemento();
+    static final ArrayList<int[]> estadosVectores = new ArrayList<>();
     static final ArrayList<String> estadosEnString = new ArrayList<>();
     private int[][] matrizCierreLambda;
-    private int[] estadoEnVector;
 
-
-    public ConstruirAFDSinLambda(int[][] matriz) {
-        this.matrizCierreLambda = matriz;
-        estadoEnVector = new int[matriz.length];
-        inicial();
-        new AsignarVariableAEstado();
-    }
     public ConstruirAFDSinLambda() {
     }
 
+    public ConstruirAFDSinLambda(int[][] matriz) {
+        this.matrizCierreLambda = matriz;
+        inicial();
+        new AsignarVariableAEstado();
+    }
+
     public int getEstadosSize() {
-        return estadosEnVectorDeInt.size();
+        return estadosVectores.size();
     }
 
     public int[] getEstado(int i) {
-        return estadosEnVectorDeInt.get(i);
+        return estadosVectores.get(i);
     }
 
     public int getEstadosssSize() {
@@ -39,31 +37,28 @@ public class ConstruirAFDSinLambda {
     
     private void inicial() {
         for (int i = 0; i < matrizCierreLambda.length; i++) {
-            if (matrizCierreLambda[0][i] != 0) {
-                estadoEnVector[i] = matrizCierreLambda[0][i];
-            }
+           estadosVectores.add(matrizCierreLambda[i]);
         }
-        estadosEnVectorDeInt.add(estadoEnVector);
         evaluarI();
     }
 
     private void evaluarI() {
         int ir = 0;
-        while (ir < estadosEnVectorDeInt.size()) {//Recorre los nuevos estados
-            for (int j = 0; j < elemento.getSizeSimbolos(); j++) {//Recorre los simbolos ingresados en la ER
+        while (ir < estadosVectores.size()) {//Recorre los nuevos estados
+            for (int j = 0; j < elementos.getSizeSimbolos(); j++) {//Recorre los simbolos ingresados en la ER
                 int[] simb = new int[matrizCierreLambda.length];
-                for (int k = 0; k < estadosEnVectorDeInt.get(ir).length; k++) {//Recorre cada Caracter del estado
-                    if (estadosEnVectorDeInt.get(ir)[k] != 0) {
-                        for (int l = 0; l < elemento.getSizeER(); l++) {//Recorre las transiciones
-                            if (elemento.getTransicionER(l).getEstadoOrigen() == estadosEnVectorDeInt.get(ir)[k]) {
-                                if (elemento.getSimbolo(j).equals(elemento.getTransicionER(l).getSimboloIngresado())) {
-                                    agregarE(elemento.getTransicionER(l).getEstadoFinal() - 1, simb);
+                for (int k = 0; k < estadosVectores.get(ir).length; k++) {//Recorre cada Caracter del estado
+                    if (estadosVectores.get(ir)[k] != 0) {
+                        for (int l = 0; l < elementos.getSizeER(); l++) {//Recorre las transiciones
+                            if (elementos.getTransicionER(l).getEstadoOrigen() == estadosVectores.get(ir)[k]) {
+                                if (elementos.getSimbolo(j).equals(elementos.getTransicionER(l).getSimboloIngresado())) {
+                                    agregarE(elementos.getTransicionER(l).getEstadoFinal() - 1, simb);
                                 }
                             }
                         }
                     }
                 }
-                elemento.addTransicionAFD(captarTran(estadosEnVectorDeInt.get(ir), elemento.getSimbolo(j), simb));
+                elementos.addTransicionAFD(captarTran(estadosVectores.get(ir), elementos.getSimbolo(j), simb));
                 if (!exis(simb)) {
                     agrE(simb);
                 }
@@ -79,7 +74,7 @@ public class ConstruirAFDSinLambda {
         for (int anInt : ints) {
             if (anInt != 0) {
                 ei.append("  ").append(anInt);
-                if (elemento.getAceptacion() == anInt) {
+                if (elementos.getAceptacion() == anInt) {
                     a = true;
                 }
             }
@@ -100,7 +95,7 @@ public class ConstruirAFDSinLambda {
 
 
     private boolean exis(int[] ints) {
-        for (int[] estado : estadosEnVectorDeInt) {
+        for (int[] estado : estadosVectores) {
             if (Arrays.equals(ints, estado)) {
                 return true;
             }
@@ -118,7 +113,7 @@ public class ConstruirAFDSinLambda {
     }
 
     private void agrE(int[] simb) {
-        estadosEnVectorDeInt.add(simb);
+        estadosVectores.add(simb);
     }
 
     private void agregarE(int j, int[] x) {
