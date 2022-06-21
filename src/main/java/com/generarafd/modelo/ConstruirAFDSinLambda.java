@@ -15,7 +15,8 @@ public class ConstruirAFDSinLambda {
     public ConstruirAFDSinLambda(int[][] matriz) {
         this.matrizCierreLambda = matriz;
         estadoEnVector = new int[matriz.length];
-        com();
+        inicial();
+        new AsignarVariableAEstado();
     }
     public ConstruirAFDSinLambda() {
     }
@@ -35,13 +36,7 @@ public class ConstruirAFDSinLambda {
     public String getEstadoss(int i) {
         return estadosEnString.get(i);
     }
-
-    public void com() {
-        inicial();
-        new AsignarVariableAEstado();
-    }
-
-
+    
     private void inicial() {
         for (int i = 0; i < matrizCierreLambda.length; i++) {
             if (matrizCierreLambda[0][i] != 0) {
