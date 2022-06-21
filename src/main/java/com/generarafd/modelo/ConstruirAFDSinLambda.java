@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class ConstruirAFDSinLambda {
 
     private final Elemento elementos = new Elemento();
-    static final ArrayList<int[]> estadosVectores = new ArrayList<>();
+    static final ArrayList<int[]> nuevosEstadosEnVectores = new ArrayList<>();
     static final ArrayList<String> estadosEnString = new ArrayList<>();
     private int[][] matrizCierreLambda;
 
@@ -20,11 +20,11 @@ public class ConstruirAFDSinLambda {
     }
 
     public int getEstadosSize() {
-        return estadosVectores.size();
+        return nuevosEstadosEnVectores.size();
     }
 
     public int[] getEstado(int i) {
-        return estadosVectores.get(i);
+        return nuevosEstadosEnVectores.get(i);
     }
 
     public int getEstadosssSize() {
@@ -37,20 +37,20 @@ public class ConstruirAFDSinLambda {
     
     private void inicial() {
         for (int i = 0; i < matrizCierreLambda.length; i++) {
-           estadosVectores.add(matrizCierreLambda[i]);
+           nuevosEstadosEnVectores.add(matrizCierreLambda[i]);
         }
         evaluarI();
     }
 
     private void evaluarI() {
         int ir = 0;
-        while (ir < estadosVectores.size()) {//Recorre los nuevos estados
+        while (ir < nuevosEstadosEnVectores.size()) {//Recorre los estados en vectores
             for (int j = 0; j < elementos.getSizeSimbolos(); j++) {//Recorre los simbolos ingresados en la ER
                 int[] simb = new int[matrizCierreLambda.length];
-                for (int k = 0; k < estadosVectores.get(ir).length; k++) {//Recorre cada Caracter del estado
-                    if (estadosVectores.get(ir)[k] != 0) {
+                for (int k = 0; k < nuevosEstadosEnVectores.get(ir).length; k++) {//Recorre cada elemento del vector del estado
+                    if (nuevosEstadosEnVectores.get(ir)[k] != 0) {
                         for (int l = 0; l < elementos.getSizeER(); l++) {//Recorre las transiciones
-                            if (elementos.getTransicionER(l).getEstadoOrigen() == estadosVectores.get(ir)[k]) {
+                            if (elementos.getTransicionER(l).getEstadoOrigen() == nuevosEstadosEnVectores.get(ir)[k]) {
                                 if (elementos.getSimbolo(j).equals(elementos.getTransicionER(l).getSimboloIngresado())) {
                                     agregarE(elementos.getTransicionER(l).getEstadoFinal() - 1, simb);
                                 }
@@ -58,7 +58,7 @@ public class ConstruirAFDSinLambda {
                         }
                     }
                 }
-                elementos.addTransicionAFD(captarTran(estadosVectores.get(ir), elementos.getSimbolo(j), simb));
+                elementos.addTransicionAFD(captarTran(nuevosEstadosEnVectores.get(ir), elementos.getSimbolo(j), simb));
                 if (!exis(simb)) {
                     agrE(simb);
                 }
@@ -95,7 +95,7 @@ public class ConstruirAFDSinLambda {
 
 
     private boolean exis(int[] ints) {
-        for (int[] estado : estadosVectores) {
+        for (int[] estado : nuevosEstadosEnVectores) {
             if (Arrays.equals(ints, estado)) {
                 return true;
             }
@@ -113,7 +113,7 @@ public class ConstruirAFDSinLambda {
     }
 
     private void agrE(int[] simb) {
-        estadosVectores.add(simb);
+        nuevosEstadosEnVectores.add(simb);
     }
 
     private void agregarE(int j, int[] x) {
