@@ -46,9 +46,9 @@ public class ConstruirAFDSinLambda {
         int ir = 0;
         while (ir < nuevosEstadosEnVectores.size()) {//Recorre los estados en vectores
             for (int j = 0; j < elementos.getSizeSimbolos(); j++) {//Recorre los simbolos ingresados en la ER
-                int[] simb = new int[matrizCierreLambda.length];
-                for (int k = 0; k < nuevosEstadosEnVectores.get(ir).length; k++) {//Recorre cada elemento del vector del estado
-                    if (nuevosEstadosEnVectores.get(ir)[k] != 0) {
+                int[] simb = new int[matrizCierreLambda.length]; //se crea un vector
+                for (int k = 0; k < nuevosEstadosEnVectores.get(ir).length; k++) {//Recorre cada elemento del vector de nuevo estado
+                    if (nuevosEstadosEnVectores.get(ir)[k] != 0) {//no se opera el cero
                         for (int l = 0; l < elementos.getSizeER(); l++) {//Recorre las transiciones
                             if (elementos.getTransicionER(l).getEstadoOrigen() == nuevosEstadosEnVectores.get(ir)[k]) {
                                 if (elementos.getSimbolo(j).equals(elementos.getTransicionER(l).getSimboloIngresado())) {
@@ -116,13 +116,13 @@ public class ConstruirAFDSinLambda {
         nuevosEstadosEnVectores.add(simb);
     }
 
-    private void agregarE(int j, int[] x) {
-        for (int h = 0; h < x.length; h++) {
-            if (x[h] == 0) {
-                for (int i = 0; i < matrizCierreLambda[j].length; i++) {
-                    if (matrizCierreLambda[j][i] != 0 && !repetido(x, matrizCierreLambda[j][i])) {
-                        x[h] = matrizCierreLambda[j][i];
-                        h++;
+    private void agregarE(int estadoFinal, int[] vector) {
+        for (int i = 0; i < vector.length; i++) {
+            if (vector[i] == 0) {
+                for (int j = 0; j < matrizCierreLambda[estadoFinal].length; j++) {
+                    if (matrizCierreLambda[estadoFinal][j] != 0 && !repetido(vector, matrizCierreLambda[estadoFinal][j])) {
+                        vector[i] = matrizCierreLambda[estadoFinal][j];
+                        i++;
                     }
                 }
                 break;
