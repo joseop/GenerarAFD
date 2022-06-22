@@ -34,19 +34,19 @@ public class ConexionAFDR {
         boolean primero = true;
 
 
-        for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
-            for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
-                for (int j = 0; j < grupos.size(); j++) {
-                    if (grupoEstados.get(i).getGrupo()==grupos.get(j)) {
-                        obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(),elementos.getSimbolo(k)));
-                        
+        for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
+            for (int j = 0; j < grupos.size(); j++) {
+                apuntador.clear();
+                for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
+                    if (grupoEstados.get(i).getGrupo() == grupos.get(j)) {
+                        apuntador.add(obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(), elementos.getSimbolo(k))));
                     }
                 }
             }
         }
     }
 
-    public String obtenerTransicionAFDN(String estadoOrigen, String simboloIngresado){
+    public String obtenerTransicionAFDN(String estadoOrigen, String simboloIngresado) {
         for (int i = 0; i < elementos.getsizeAFDN(); i++) {
             if (elementos.getTransicionAFDN(i).getSimboloIngresado().equals(simboloIngresado) &&
                     elementos.getTransicionAFDN(i).getEstadoOrigen().equals(estadoOrigen)) {
@@ -56,7 +56,7 @@ public class ConexionAFDR {
         return null;
     }
 
-    public int obtenerApuntadorDeEstado(String estado){
+    public int obtenerApuntadorDeEstado(String estado) {
         for (int i = 0; i < grupoEstados.size(); i++) {
             if (grupoEstados.get(i).equals(estado)) {
                 return grupoEstados.get(i).getGrupo();
