@@ -103,10 +103,10 @@ public class ConstruirAFDSinLambda {
                 ef.append("  ").append(j);
             }
         }
-        if (!exis2(ei.toString())) {
+        if (!existeCadenaEnEstadosEnString(ei.toString())) {
             estadosEnString.add(ei.toString());
         }
-        if (!exis2(ef.toString())) {
+        if (!existeCadenaEnEstadosEnString(ef.toString())) {
             estadosEnString.add(ef.toString());
         }
         return new TransicionAFD(a, ei.toString(), ef.toString(), simbolo);
@@ -123,9 +123,9 @@ public class ConstruirAFDSinLambda {
         return false;
     }
 
-    private boolean exis2(String ints) {
+    private boolean existeCadenaEnEstadosEnString(String nuevoEstadoEnString) {
         for (int i = 0; i < estadosEnString.size(); i++) {
-            if (estadosEnString.get(i).equals(ints)) {
+            if (estadosEnString.get(i).equals(nuevoEstadoEnString)) {
                 return true;
             }
         }
@@ -140,7 +140,7 @@ public class ConstruirAFDSinLambda {
         for (int i = 0; i < vector.length; i++) {
             if (vector[i] == 0) {
                 for (int j = 0; j < matrizCierreLambda[estadoFinal].length; j++) {
-                    if (matrizCierreLambda[estadoFinal][j] != 0 && !repetido(vector, matrizCierreLambda[estadoFinal][j])) {
+                    if (matrizCierreLambda[estadoFinal][j] != 0 && !estaEnVector(vector, matrizCierreLambda[estadoFinal][j])) {
                         vector[i] = matrizCierreLambda[estadoFinal][j];
                         i++;
                     }
@@ -150,7 +150,7 @@ public class ConstruirAFDSinLambda {
         }
     }
 
-    private boolean repetido(int[] vector, int elemento) {
+    private boolean estaEnVector(int[] vector, int elemento) {
         for (int i : vector) {
             if (i == elemento) {
                 return true;
