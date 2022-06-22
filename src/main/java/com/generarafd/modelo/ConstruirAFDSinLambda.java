@@ -2,6 +2,7 @@ package com.generarafd.modelo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class ConstruirAFDSinLambda {
 
@@ -36,7 +37,7 @@ public class ConstruirAFDSinLambda {
     }
 
     private void inicial() {
-        int aux[] = new int[matrizCierreLambda.length];
+        int[] aux = new int[matrizCierreLambda.length];
         for (int i = 0; i < matrizCierreLambda.length; i++) {
             if (matrizCierreLambda[0][i] != 0) {
                 aux[i] = matrizCierreLambda[0][i];
@@ -49,19 +50,19 @@ public class ConstruirAFDSinLambda {
 
     public void mostrar() {
         System.out.println("\nNuevos Estados");
-        for (int i = 0; i < nuevosEstadosEnVectores.size(); i++) {
-            for (int j = 0; j < nuevosEstadosEnVectores.get(i).length; j++) {
-                if (nuevosEstadosEnVectores.get(i)[j] == 0) {
+        for (int[] nuevosEstadosEnVectore : nuevosEstadosEnVectores) {
+            for (int i : nuevosEstadosEnVectore) {
+                if (i == 0) {
                     continue;
                 }
-                System.out.print(nuevosEstadosEnVectores.get(i)[j] + " ");
+                System.out.print(i + " ");
             }
             System.out.println("");
         }
 
         System.out.println("\nNuevos Estados en String");
-        for (int i = 0; i < estadosEnString.size(); i++) {
-                System.out.println(estadosEnString.get(i));
+        for (String s : estadosEnString) {
+            System.out.println(s);
         }
     }
 
@@ -110,10 +111,10 @@ public class ConstruirAFDSinLambda {
         }
         estadoInicial= new StringBuilder(estadoInicial.substring(1, estadoInicial.length()));
         estadoFinal= new StringBuilder(estadoFinal.substring(1, estadoFinal.length()));
-        if (!existeCadenaEnEstadosEnString(estadoInicial.toString())) {
+        if (existeCadenaEnEstadosString(estadoInicial.toString())) {
             estadosEnString.add(estadoInicial.toString());
         }
-        if (!existeCadenaEnEstadosEnString(estadoFinal.toString())) {
+        if (existeCadenaEnEstadosString(estadoFinal.toString())) {
             estadosEnString.add(estadoFinal.toString());
         }
         return new TransicionAFD(a, estadoInicial.toString(), estadoFinal.toString(), simbolo);
@@ -130,13 +131,13 @@ public class ConstruirAFDSinLambda {
         return false;
     }
 
-    private boolean existeCadenaEnEstadosEnString(String nuevoEstadoEnString) {
-        for (int i = 0; i < estadosEnString.size(); i++) {
-            if (estadosEnString.get(i).equals(nuevoEstadoEnString)) {
-                return true;
+    private boolean existeCadenaEnEstadosString(String nuevoEstadoEnString) {
+        for (String s : estadosEnString) {
+            if (Objects.equals(s, nuevoEstadoEnString)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     private void agregarNuevoEstadoEnVector(int[] vector) {
