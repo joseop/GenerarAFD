@@ -3,41 +3,27 @@ package com.generarafd.modelo;
 import java.util.ArrayList;
 
 public class ConexionAFDR {
-    private final Elemento elemento = new Elemento();
+    private final Elemento elementos = new Elemento();
     private static final ArrayList<GrupoEstado> grupoEstados = new ArrayList<>();
+    private static final ArrayList<Integer> grupos = new ArrayList<>();
     private static final ArrayList<Integer> apuntador = new ArrayList<>();
     private static final ArrayList<Integer> gruporeferencia = new ArrayList<>();
     GrupoEstado grupoEstado;
 
-    public void gruposIniciales() {
-        for (int i = 0; i < elemento.getsizeAFDN(); i++) {
-            if (TRANSICIONESAFDR.get(i).isAceptacion()) {
-                GRUPOSAFDR.add(new GrupoEstado(TRANSICIONESAFDR.get(i).getEstadoI(), 1));
-            } else {
-                GRUPOSAFDR.add(new GrupoEstado(TRANSICIONESAFDR.get(i).getEstadoI(), 0));
-            }
-        }
-    }
-
-  /*  CovertirEstadosANumeros conexionAFD = new CovertirEstadosANumeros();
-    Simbolo simbolos = new Simbolo();
-
     public ConexionAFDR() {
-        for (int i = 0; i < conexionAFD.getsize(); i++) {
-            TRANSICIONESAFDR.add(conexionAFD.getTransicionAFDN(i));
-        }
     }
 
-    public void apartarGrupos() {
-        int[] x0 = new int[TRANSICIONESAFDR.size()];
-        int[] x1 = new int[TRANSICIONESAFDR.size()];
-        for (int i = 0; i < TRANSICIONESAFDR.size(); i++) {
-            if (TRANSICIONESAFDR.get(i).isAceptacion()) {
-                GRUPOSAFDR.add(new GrupoEstado(TRANSICIONESAFDR.get(i).getEstadoI(), 1));
+    public void gruposIniciales() {
+        grupos.add(0);
+        grupos.add(1);
+        for (int i = 0; i < elementos.getsizeAFDN(); i++) {
+            if (elementos.getTransicionAFDN(i).isAceptacion()) {
+                grupoEstados.add(new GrupoEstado(elementos.getTransicionAFDN(i).getEstadoOrigen(), 1));
             } else {
-                GRUPOSAFDR.add(new GrupoEstado(TRANSICIONESAFDR.get(i).getEstadoI(), 0));
+                grupoEstados.add(new GrupoEstado(elementos.getTransicionAFDN(i).getEstadoOrigen(), 0));
             }
         }
+        evaluarGrupos();
     }
 
     public void evaluarGrupos() {
@@ -46,24 +32,42 @@ public class ConexionAFDR {
         ArrayList<Integer> gruposR = new ArrayList<>();
         ArrayList<Integer> posiciones = new ArrayList<>();
         boolean primero = true;
-        for (int i = 0; i < GRUPOS.size(); i++) {//Recorre los i grupos
-            for (int k = 0; k < simbolos.getSizeSimbolos(); k++) {// Recorre los simbolos
-                gruposR.clear();
-                for (int j = 0; j < GRUPOSAFDR.size(); j++) {//Recorre los Estados asociados a un grupo
-                    if (GRUPOSAFDR.get(j).getGrupo() == GRUPOS.get(i)) {
-                        grupoR = grupoPertenece(obEstadoF(GRUPOSAFDR.get(j).getEstado(), simbolos.getSimbolo(k)));
-                        gruposR.add(grupoR);
-                        posiciones.add(j);
-                        cambio = procesar(gruposR,posiciones);
-                        if (cambio) {
-                            i = 0;
-                            cambio = false;
-                        }
+
+
+        for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
+            for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
+                for (int j = 0; j < grupos.size(); j++) {
+                    if (grupoEstados.get(i).getGrupo()==grupos.get(j)) {
+                        obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(),elementos.getSimbolo(k)));
+                        
                     }
                 }
             }
         }
     }
+
+    public String obtenerTransicionAFDN(String estadoOrigen, String simboloIngresado){
+        for (int i = 0; i < elementos.getsizeAFDN(); i++) {
+            if (elementos.getTransicionAFDN(i).getSimboloIngresado().equals(simboloIngresado) &&
+                    elementos.getTransicionAFDN(i).getEstadoOrigen().equals(estadoOrigen)) {
+                return elementos.getTransicionAFDN(i).getEstadoFinal();
+            }
+        }
+        return null;
+    }
+
+    public int obtenerApuntadorDeEstado(String estado){
+        for (int i = 0; i < grupoEstados.size(); i++) {
+            if (grupoEstados.get(i).equals(estado)) {
+                return grupoEstados.get(i).getGrupo();
+            }
+        }
+        return 0;
+    }
+  /*
+
+
+
 
     private boolean procesar(ArrayList<Integer> gruposR,ArrayList<Integer> posiciones) {
         ArrayList<Integer> gDf = new ArrayList<>();
