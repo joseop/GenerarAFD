@@ -34,37 +34,45 @@ public class ConstruirAFDSinLambda {
     public String getEstadoss(int i) {
         return estadosEnString.get(i);
     }
-    
+
     private void inicial() {
         for (int i = 0; i < matrizCierreLambda.length; i++) {
-           nuevosEstadosEnVectores.add(matrizCierreLambda[i]);
+            nuevosEstadosEnVectores.add(matrizCierreLambda[i]);
         }
-        evaluarI();
+
+        // evaluarCierreLambdaInicial();
+        for (int i = 0; i < nuevosEstadosEnVectores.size(); i++) {
+            for (int j = 0; j < nuevosEstadosEnVectores.get(i).length; j++) {
+                System.out.print(nuevosEstadosEnVectores.get(i)[j] + "  ");
+            }
+            System.out.println("");
+        }
     }
 
-    private void evaluarI() {
-        int ir = 0;
-        while (ir < nuevosEstadosEnVectores.size()) {//Recorre los estados en vectores
+    private void evaluarCierreLambdaInicial() {
+        int n = 0;
+        while (n < nuevosEstadosEnVectores.size()) {//Recorre los estados en vectores
             for (int j = 0; j < elementos.getSizeSimbolos(); j++) {//Recorre los simbolos ingresados en la ER
-                int[] simb = new int[matrizCierreLambda.length]; //se crea un vector
-                for (int k = 0; k < nuevosEstadosEnVectores.get(ir).length; k++) {//Recorre cada elemento del vector de nuevo estado
-                    if (nuevosEstadosEnVectores.get(ir)[k] != 0) {//no se opera el cero
-                        for (int l = 0; l < elementos.getSizeER(); l++) {//Recorre las transiciones
-                            if (elementos.getTransicionER(l).getEstadoOrigen() == nuevosEstadosEnVectores.get(ir)[k]) {
+                int[] vector = new int[matrizCierreLambda.length]; //se crea un vector
+                for (int k = 0; k < nuevosEstadosEnVectores.get(n).length; k++) {//Recorre cada elemento del vector de nuevo estado
+                    if (nuevosEstadosEnVectores.get(n)[k] != 0) {//no se opera el cero
+                        for (int l = 0; l < elementos.getSizeER(); l++) {//Recorre las transiciones de ER
+                            if (elementos.getTransicionER(l).getEstadoOrigen() == nuevosEstadosEnVectores.get(n)[k]) {
                                 if (elementos.getSimbolo(j).equals(elementos.getTransicionER(l).getSimboloIngresado())) {
-                                    agregarE(elementos.getTransicionER(l).getEstadoFinal() - 1, simb);
+                                    agregarEstadoAVector(elementos.getTransicionER(l).getEstadoFinal() - 1, vector);
                                 }
                             }
                         }
                     }
                 }
-                elementos.addTransicionAFD(captarTran(nuevosEstadosEnVectores.get(ir), elementos.getSimbolo(j), simb));
-                if (!exis(simb)) {
-                    agrE(simb);
+                elementos.addTransicionAFD(captarTran(nuevosEstadosEnVectores.get(n), elementos.getSimbolo(j), vector));
+                if (!existeEnNuevosEstados(vector)) {
+                    agregarNuevoEstadoEnVector(vector);
                 }
             }
-            ir++;
+            n++;
         }
+
     }
 
     private TransicionAFD captarTran(int[] ints, String simbolo, int[] simb) {
@@ -91,12 +99,13 @@ public class ConstruirAFDSinLambda {
             estadosEnString.add(ef.toString());
         }
         return new TransicionAFD(a, ei.toString(), ef.toString(), simbolo);
+
     }
 
 
-    private boolean exis(int[] ints) {
+    private boolean existeEnNuevosEstados(int[] vector) {
         for (int[] estado : nuevosEstadosEnVectores) {
-            if (Arrays.equals(ints, estado)) {
+            if (Arrays.equals(vector, estado)) {
                 return true;
             }
         }
@@ -112,11 +121,11 @@ public class ConstruirAFDSinLambda {
         return false;
     }
 
-    private void agrE(int[] simb) {
-        nuevosEstadosEnVectores.add(simb);
+    private void agregarNuevoEstadoEnVector(int[] vector) {
+        nuevosEstadosEnVectores.add(vector);
     }
 
-    private void agregarE(int estadoFinal, int[] vector) {
+    private void agregarEstadoAVector(int estadoFinal, int[] vector) {
         for (int i = 0; i < vector.length; i++) {
             if (vector[i] == 0) {
                 for (int j = 0; j < matrizCierreLambda[estadoFinal].length; j++) {
