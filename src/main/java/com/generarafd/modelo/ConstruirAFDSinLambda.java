@@ -54,9 +54,14 @@ public class ConstruirAFDSinLambda {
                 if (nuevosEstadosEnVectores.get(i)[j] == 0) {
                     continue;
                 }
-                System.out.print(nuevosEstadosEnVectores.get(i)[j] + "  ");
+                System.out.print(nuevosEstadosEnVectores.get(i)[j] + " ");
             }
             System.out.println("");
+        }
+
+        System.out.println("\nNuevos Estados en String");
+        for (int i = 0; i < estadosEnString.size(); i++) {
+                System.out.println(estadosEnString.get(i));
         }
     }
 
@@ -86,30 +91,32 @@ public class ConstruirAFDSinLambda {
 
     }
 
-    private TransicionAFD captarTran(int[] ints, String simbolo, int[] simb) {
-        StringBuilder ei = new StringBuilder();
-        StringBuilder ef = new StringBuilder();
+    private TransicionAFD captarTran(int[] vectorEstadoInicial, String simbolo, int[] vectorEstadoFinal) {
+        StringBuilder estadoInicial = new StringBuilder();
+        StringBuilder estadoFinal = new StringBuilder();
         boolean a = false;
-        for (int anInt : ints) {
+        for (int anInt : vectorEstadoInicial) {
             if (anInt != 0) {
-                ei.append("  ").append(anInt);
+                estadoInicial.append(",").append(anInt);
                 if (elementos.getAceptacion() == anInt) {
                     a = true;
                 }
             }
         }
-        for (int j : simb) {
+        for (int j : vectorEstadoFinal) {
             if (j != 0) {
-                ef.append("  ").append(j);
+                estadoFinal.append(",").append(j);
             }
         }
-        if (!existeCadenaEnEstadosEnString(ei.toString())) {
-            estadosEnString.add(ei.toString());
+        estadoInicial= new StringBuilder(estadoInicial.substring(1, estadoInicial.length()));
+        estadoFinal= new StringBuilder(estadoFinal.substring(1, estadoFinal.length()));
+        if (!existeCadenaEnEstadosEnString(estadoInicial.toString())) {
+            estadosEnString.add(estadoInicial.toString());
         }
-        if (!existeCadenaEnEstadosEnString(ef.toString())) {
-            estadosEnString.add(ef.toString());
+        if (!existeCadenaEnEstadosEnString(estadoFinal.toString())) {
+            estadosEnString.add(estadoFinal.toString());
         }
-        return new TransicionAFD(a, ei.toString(), ef.toString(), simbolo);
+        return new TransicionAFD(a, estadoInicial.toString(), estadoFinal.toString(), simbolo);
 
     }
 
