@@ -1,25 +1,26 @@
 package com.generarafd.modelo;
 
 
-public class AsignarVariableAEstado {
+public class AsignarVariableNumericaAEstado {
     private static final ConstruirAFDSinLambda estados = new ConstruirAFDSinLambda();
     private final Elemento elementos = new Elemento();
 
-    public AsignarVariableAEstado() {
-        convertirAFD();
+    public AsignarVariableNumericaAEstado() {
+        convertirEstadosEnVariablesNumericas();
+        elementos.mostrarAFDN();
     }
 
-    public void convertirAFD() {
+    public void convertirEstadosEnVariablesNumericas() {
         for (int i = 0; i < elementos.getSizeAFD(); i++) {
             TransicionAFD transicionAFD = new TransicionAFD(elementos.getTransicionAFD(i).isAceptacion(),
-                    estadoPosicion(elementos.getTransicionAFD(i).getEstadoOrigen()),
-                    estadoPosicion(elementos.getTransicionAFD(i).getEstadoFinal()),
+                    posicionDelEstado(elementos.getTransicionAFD(i).getEstadoOrigen()),
+                    posicionDelEstado(elementos.getTransicionAFD(i).getEstadoFinal()),
                     elementos.getTransicionAFD(i).getSimboloIngresado());
             elementos.addAFDN(transicionAFD);
         }
     }
 
-    private String estadoPosicion(String estado) {
+    private String posicionDelEstado(String estado) {
         for (int i = 0; i < estados.getEstadosssSize(); i++) {
             if (estado.equals(estados.getEstadoss(i))) {
                 i++;

@@ -104,7 +104,7 @@ public class Elemento {
         return AFDVariables.size();
     }
 
-    private void mostrarAFDN() {
+    public void mostrarAFDN() {
         for (TransicionAFD afdVariable : AFDVariables) {
             System.out.println(afdVariable.mostrar());
         }
