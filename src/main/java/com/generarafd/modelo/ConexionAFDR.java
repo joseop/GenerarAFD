@@ -48,7 +48,13 @@ public class ConexionAFDR {
     }
 
     private void procesar(int posicionSimbolo, int posicionGrupo) {
-        
+        gruporeferencia.clear();
+        gruporeferencia.add(apuntador.get(0));
+        for (int i = 1; i < apuntador.size(); i++) {
+            if (apuntador.get(i)!=apuntador.get(0)) {
+
+            }
+        }
     }
 
 
