@@ -9,7 +9,9 @@ public class CierreLambda {
     private final int[][] matrizCierreLambda = new int[elementos.getAceptacion()][elementos.getAceptacion()];
 
     public CierreLambda() {
+        elementos.mostrarER();
         buscarCierreLambda();
+        mostrarMatriz();
         new ConstruirAFDSinLambda(matrizCierreLambda);
     }
 

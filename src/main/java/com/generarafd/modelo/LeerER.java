@@ -12,13 +12,13 @@ public class LeerER {
     public LeerER(String expresionRegular) {
         this.expresionRegular = expresionRegular;
         iniciarConexion();
+        new CierreLambda();
     }
 
     private void iniciarConexion() {
         elementos.addTransicionER(operacion.reescribirExpresion(expresionRegular, 1));
         conectarTransiciones();
         capturarSimbolosDeLaER();
-        new CierreLambda();
     }
 
     private void conectarTransiciones() {

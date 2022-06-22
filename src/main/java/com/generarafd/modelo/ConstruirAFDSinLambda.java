@@ -36,11 +36,14 @@ public class ConstruirAFDSinLambda {
     }
 
     private void inicial() {
+        int aux[] = new int[matrizCierreLambda.length];
         for (int i = 0; i < matrizCierreLambda.length; i++) {
-            nuevosEstadosEnVectores.add(matrizCierreLambda[i]);
+            if (matrizCierreLambda[0][i] != 0) {
+                aux[i] = matrizCierreLambda[0][i];
+            }
         }
-
-        // evaluarCierreLambdaInicial();
+        nuevosEstadosEnVectores.add(aux);
+        evaluarCierreLambdaInicial();
         for (int i = 0; i < nuevosEstadosEnVectores.size(); i++) {
             for (int j = 0; j < nuevosEstadosEnVectores.get(i).length; j++) {
                 System.out.print(nuevosEstadosEnVectores.get(i)[j] + "  ");
