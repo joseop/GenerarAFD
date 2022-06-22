@@ -42,9 +42,15 @@ public class ConexionAFDR {
                         apuntador.add(obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(), elementos.getSimbolo(k))));
                     }
                 }
+                procesar(k,j);
             }
         }
     }
+
+    private void procesar(int posicionSimbolo, int posicionGrupo) {
+        
+    }
+
 
     public String obtenerTransicionAFDN(String estadoOrigen, String simboloIngresado) {
         for (int i = 0; i < elementos.getsizeAFDN(); i++) {
