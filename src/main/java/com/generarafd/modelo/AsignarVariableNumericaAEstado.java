@@ -6,6 +6,7 @@ public class AsignarVariableNumericaAEstado {
     private final Elemento elementos = new Elemento();
 
     public AsignarVariableNumericaAEstado() {
+        elementos.mostrarAFD();
         convertirEstadosEnVariablesNumericas();
         elementos.mostrarAFDN();
     }
