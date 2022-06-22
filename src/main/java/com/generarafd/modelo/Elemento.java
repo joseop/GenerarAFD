@@ -43,13 +43,9 @@ public class Elemento {
     public void addTransicionER(TransicionER transicionER) {
         transicionesER.add(transicionER);
     }
-    public void ordenarTransicionesER( ) {
-        Collections.sort(transicionesER, new Comparator<TransicionER>() {
-            @Override
-            public int compare(TransicionER p1, TransicionER p2) {
-                return new Integer(p1.getEstadoOrigen()).compareTo(new Integer(p2.getEstadoOrigen()));
-            }
-        });
+
+    public void ordenarTransicionesER() {
+        transicionesER.sort((p1, p2) -> Integer.valueOf(p1.getEstadoOrigen()).compareTo(Integer.valueOf(p2.getEstadoOrigen())));
     }
 
 
@@ -121,6 +117,7 @@ public class Elemento {
             System.out.println(afdVariable.mostrar());
         }
     }
+
     public void addAFDN(TransicionAFD transicionAFD) {
         AFDVariables.add(transicionAFD);
     }
