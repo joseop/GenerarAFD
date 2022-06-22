@@ -44,8 +44,16 @@ public class ConstruirAFDSinLambda {
         }
         nuevosEstadosEnVectores.add(aux);
         evaluarCierreLambdaInicial();
+        mostrar();
+    }
+
+    public void mostrar() {
+        System.out.println("\nNuevos Estados");
         for (int i = 0; i < nuevosEstadosEnVectores.size(); i++) {
             for (int j = 0; j < nuevosEstadosEnVectores.get(i).length; j++) {
+                if (nuevosEstadosEnVectores.get(i)[j] == 0) {
+                    continue;
+                }
                 System.out.print(nuevosEstadosEnVectores.get(i)[j] + "  ");
             }
             System.out.println("");
