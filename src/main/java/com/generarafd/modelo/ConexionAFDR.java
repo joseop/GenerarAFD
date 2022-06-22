@@ -33,18 +33,37 @@ public class ConexionAFDR {
         ArrayList<Integer> posiciones = new ArrayList<>();
         boolean primero = true;
 
-
+        int itercion = 0;
         for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
             for (int j = 0; j < grupos.size(); j++) {
                 apuntador.clear();
                 for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
+                    itercion++;
                     if (grupoEstados.get(i).getGrupo() == grupos.get(j)) {
                         apuntador.add(obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(), elementos.getSimbolo(k))));
                     }
                 }
+                procesar(k, j, itercion);
             }
         }
     }
+
+    private void procesar(int posicionSimbolo, int posicionGrupo, int iteracion) {
+        gruporeferencia.clear();
+        gruporeferencia.add(apuntador.get(0));
+        for (int i = 1; i < apuntador.size(); i++) {
+            for (int j = 0; j < gruporeferencia.size(); j++) {
+                if (apuntador.get(i) == apuntador.get(j)) {
+                    break;
+                } else {
+                    grupos.add(grupoMax() + 1);
+                    
+                }
+            }
+
+        }
+    }
+
 
     public String obtenerTransicionAFDN(String estadoOrigen, String simboloIngresado) {
         for (int i = 0; i < elementos.getsizeAFDN(); i++) {
@@ -63,6 +82,16 @@ public class ConexionAFDR {
             }
         }
         return 0;
+    }
+
+    public int grupoMax() {
+        int max = 0;
+        for (int i = 0; i < grupoEstados.size(); i++) {
+            if (grupoEstados.get(i).getGrupo() > max) {
+                max = grupoEstados.get(i).getGrupo();
+            }
+        }
+        return max;
     }
   /*
 
@@ -119,15 +148,7 @@ public class ConexionAFDR {
 
     }
 
-    public int grupoMax() {
-        int max = 0;
-        for (int i = 0; i < GRUPOSAFDR.size(); i++) {
-            if (GRUPOSAFDR.get(i).getGrupo() > max) {
-                max = GRUPOSAFDR.get(i).getGrupo();
-            }
-        }
-        return max;
-    }
+
 
     public int grupoPertenece(String est) {
         int gru = -1;
