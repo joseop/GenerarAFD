@@ -3,11 +3,22 @@ package com.generarafd.modelo;
 import java.util.ArrayList;
 
 public class ConexionAFDR {
-    private static final ArrayList<TransicionAFD> TRANSICIONESAFDR = new ArrayList<>();
-    private static final ArrayList<GrupoEstado> GRUPOSAFDR = new ArrayList<>();
-    private static final ArrayList<Integer> GRUPOS = new ArrayList<>();
-    //private final ConexionAFD conexionAFD = new ConexionAFD();
+    private final Elemento elemento = new Elemento();
+    private static final ArrayList<GrupoEstado> grupoEstados = new ArrayList<>();
+    private static final ArrayList<Integer> apuntador = new ArrayList<>();
+    private static final ArrayList<Integer> gruporeferencia = new ArrayList<>();
     GrupoEstado grupoEstado;
+
+    public void gruposIniciales() {
+        for (int i = 0; i < elemento.getsizeAFDN(); i++) {
+            if (TRANSICIONESAFDR.get(i).isAceptacion()) {
+                GRUPOSAFDR.add(new GrupoEstado(TRANSICIONESAFDR.get(i).getEstadoI(), 1));
+            } else {
+                GRUPOSAFDR.add(new GrupoEstado(TRANSICIONESAFDR.get(i).getEstadoI(), 0));
+            }
+        }
+    }
+
   /*  CovertirEstadosANumeros conexionAFD = new CovertirEstadosANumeros();
     Simbolo simbolos = new Simbolo();
 

@@ -12,6 +12,7 @@ public class LeerER {
     public LeerER(String expresionRegular) {
         this.expresionRegular = expresionRegular;
         iniciarConexion();
+        elementos.ordenarTransicionesER();
         new CierreLambda();
     }
 

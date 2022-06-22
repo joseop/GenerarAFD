@@ -1,6 +1,9 @@
 package com.generarafd.modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Elemento {
     private static final ArrayList<TransicionAFD> transicionesAFD = new ArrayList<>();
@@ -40,6 +43,15 @@ public class Elemento {
     public void addTransicionER(TransicionER transicionER) {
         transicionesER.add(transicionER);
     }
+    public void ordenarTransicionesER( ) {
+        Collections.sort(transicionesER, new Comparator<TransicionER>() {
+            @Override
+            public int compare(TransicionER p1, TransicionER p2) {
+                return new Integer(p1.getEstadoOrigen()).compareTo(new Integer(p2.getEstadoOrigen()));
+            }
+        });
+    }
+
 
     public void addTransicionesER(ArrayList<TransicionER> transicionERS) {
         transicionesER.addAll(transicionERS);
