@@ -12,11 +12,40 @@ public class ConexionAFDR {
     GrupoEstado grupoEstado;
 
     public ConexionAFDR() {
+        elementos.getTransicionAFDN(0).setEstadoFinal("1");
+        elementos.getTransicionAFDN(1).setEstadoFinal("4");
+        elementos.getTransicionAFDN(2).setEstadoFinal("3");
+        elementos.getTransicionAFDN(3).setEstadoFinal("6");
+        elementos.getTransicionAFDN(4).setEstadoFinal("3");
+        elementos.getTransicionAFDN(5).setEstadoFinal("8");
+        elementos.getTransicionAFDN(6).setEstadoFinal("7");
+        elementos.getTransicionAFDN(7).setEstadoFinal("8");
+        elementos.getTransicionAFDN(8).setEstadoFinal("2");
+        elementos.getTransicionAFDN(9).setEstadoFinal("7");
+
+        elementos.getTransicionAFDN(0).setAceptacion(false);
+        elementos.getTransicionAFDN(1).setAceptacion(false);
+        elementos.getTransicionAFDN(2).setAceptacion(false);
+        elementos.getTransicionAFDN(3).setAceptacion(false);
+
+        elementos.addAFDN(new TransicionAFD(false,"6","7","0"));
+        elementos.addAFDN(new TransicionAFD(false,"6","6","1"));
+
+        elementos.addAFDN(new TransicionAFD(true,"7","7","0"));
+        elementos.addAFDN(new TransicionAFD(true,"7","4","1"));
+
+        elementos.addAFDN(new TransicionAFD(false,"8","7","0"));
+        elementos.addAFDN(new TransicionAFD(false,"8","4","1"));
+
+        System.out.println("--");
+        elementos.mostrarAFDN();
         gruposIniciales();
-        elementos.getTransicionAFDN(9).setEstadoFinal("5");
+        mostrarGE();
+
     }
 
     public void gruposIniciales() {
+        //falta evaluar en cada simbolo
         grupos.add(0);
         grupos.add(1);
         for (int i = 0; i < elementos.getsizeAFDN(); i++) {
@@ -50,12 +79,12 @@ public class ConexionAFDR {
                 apuntadorAGrupo.clear();
                 posicion.clear();
                 for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
-
                     if (grupoEstados.get(i).getGrupo() == grupos.get(j)) {
                         apuntadorAGrupo.add(obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(), elementos.getSimbolo(k))));
                         posicion.add(i);
                     }
                 }
+
                 cambio = procesar();
                 if (cambio) {
                     k = 0;
@@ -63,21 +92,25 @@ public class ConexionAFDR {
                 }
             }
         }
-        mostrarGE();
     }
 
     private boolean procesar() {
+        if (apuntadorAGrupo.size()>0) {
+
+            gruporeferencia.clear();
+            gruporeferencia.add(apuntadorAGrupo.get(0));
+        }
         boolean cambio = false;
-        gruporeferencia.clear();
-        gruporeferencia.add(apuntadorAGrupo.get(0));
+        int nuevoGrupo = grupoMax()+1;
         for (int i = 1; i < apuntadorAGrupo.size(); i++) {
             for (int j = 0; j < gruporeferencia.size(); j++) {
                 if (apuntadorAGrupo.get(i) == apuntadorAGrupo.get(j)) {
                     break;
                 } else {
-                    gruporeferencia.add(grupoMax() + 1);
-                    grupoEstados.get(posicion.get(i)).setGrupo(grupoMax() + 1);
-                    grupos.add(grupoMax() + 1);
+
+                    gruporeferencia.add(nuevoGrupo);
+                    grupoEstados.get(posicion.get(i)).setGrupo(nuevoGrupo);
+                    grupos.add(nuevoGrupo);
                     cambio = true;
                 }
             }
@@ -105,7 +138,7 @@ public class ConexionAFDR {
 
     public int obtenerApuntadorDeEstado(String estado) {
         for (int i = 0; i < grupoEstados.size(); i++) {
-            if (grupoEstados.get(i).equals(estado)) {
+            if (grupoEstados.get(i).getEstado().equals(estado)) {
                 return grupoEstados.get(i).getGrupo();
             }
         }
@@ -117,7 +150,6 @@ public class ConexionAFDR {
         for (int i = 0; i < grupoEstados.size(); i++) {
             if (grupoEstados.get(i).getGrupo() >= max) {
                 max = grupoEstados.get(i).getGrupo();
-                System.out.println("Maximo es "+max);
             }
         }
         return max;
