@@ -10,6 +10,7 @@ public class Elemento {
     private static final ArrayList<TransicionER> transicionesER = new ArrayList<>();
     private static final ArrayList<String> simbolos = new ArrayList<>();
     private static final ArrayList<TransicionAFD> AFDVariables = new ArrayList<>();
+    private static final ArrayList<TransicionAFD> AFDMinimo = new ArrayList<>();
 
     public Elemento() {
     }
@@ -120,5 +121,24 @@ public class Elemento {
 
     public void addAFDN(TransicionAFD transicionAFD) {
         AFDVariables.add(transicionAFD);
+    }
+
+    //Metodos del AFDMinimo
+    public void addTransicionAFDMinimo(TransicionAFD transicionAFD) {
+        AFDMinimo.add(transicionAFD);
+    }
+
+    public void mostrarAFDMinimo() {
+        for (int i = 0; i < getSizeAFD(); i++) {
+            System.out.println(AFDMinimo.get(i).mostrar());
+        }
+    }
+
+    public int getSizeAFDMinimo() {
+        return AFDMinimo.size();
+    }
+
+    public TransicionAFD getTransicionAFDMinimo(int i) {
+        return AFDMinimo.get(i);
     }
 }
