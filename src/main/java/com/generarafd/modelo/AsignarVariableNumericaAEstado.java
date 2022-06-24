@@ -9,6 +9,7 @@ public class AsignarVariableNumericaAEstado {
         elementos.mostrarAFD();
         convertirEstadosEnVariablesNumericas();
         elementos.mostrarAFDN();
+        new ConexionAFDR();
     }
 
     public void convertirEstadosEnVariablesNumericas() {

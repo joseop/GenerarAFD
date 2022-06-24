@@ -24,4 +24,5 @@ public class GrupoEstado {
     public void setGrupo(int grupo) {
         this.grupo = grupo;
     }
+
 }
