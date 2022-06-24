@@ -129,7 +129,7 @@ public class Elemento {
     }
 
     public void mostrarAFDMinimo() {
-        for (int i = 0; i < getSizeAFD(); i++) {
+        for (int i = 0; i < getSizeAFDMinimo(); i++) {
             System.out.println(AFDMinimo.get(i).mostrar());
         }
     }
@@ -138,7 +138,4 @@ public class Elemento {
         return AFDMinimo.size();
     }
 
-    public TransicionAFD getTransicionAFDMinimo(int i) {
-        return AFDMinimo.get(i);
-    }
 }
