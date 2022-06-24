@@ -17,6 +17,7 @@ public class ConexionAFDR {
     }
 
     public void gruposIniciales() {
+        //falta evaluar en cada simbolo
         grupos.add(0);
         grupos.add(1);
         for (int i = 0; i < elementos.getsizeAFDN(); i++) {
