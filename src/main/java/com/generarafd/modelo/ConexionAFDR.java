@@ -6,62 +6,83 @@ public class ConexionAFDR {
     private final Elemento elementos = new Elemento();
     private static final ArrayList<GrupoEstado> grupoEstados = new ArrayList<>();
     private static final ArrayList<Integer> grupos = new ArrayList<>();
-    private static final ArrayList<Integer> apuntador = new ArrayList<>();
+    private static final ArrayList<Integer> apuntadorAGrupo = new ArrayList<>();
+    private static final ArrayList<Integer> posicion = new ArrayList<>();
     private static final ArrayList<Integer> gruporeferencia = new ArrayList<>();
     GrupoEstado grupoEstado;
 
     public ConexionAFDR() {
+        gruposIniciales();
+        elementos.getTransicionAFDN(9).setEstadoFinal("5");
     }
 
     public void gruposIniciales() {
         grupos.add(0);
         grupos.add(1);
         for (int i = 0; i < elementos.getsizeAFDN(); i++) {
-            if (elementos.getTransicionAFDN(i).isAceptacion()) {
-                grupoEstados.add(new GrupoEstado(elementos.getTransicionAFDN(i).getEstadoOrigen(), 1));
-            } else {
-                grupoEstados.add(new GrupoEstado(elementos.getTransicionAFDN(i).getEstadoOrigen(), 0));
+            if (!yaExiste(elementos.getTransicionAFDN(i).getEstadoOrigen())) {
+
+
+                if (elementos.getTransicionAFDN(i).isAceptacion()) {
+                    grupoEstados.add(new GrupoEstado(elementos.getTransicionAFDN(i).getEstadoOrigen(), 1));
+                } else {
+                    grupoEstados.add(new GrupoEstado(elementos.getTransicionAFDN(i).getEstadoOrigen(), 0));
+                }
             }
         }
+        mostrarGE();
         evaluarGrupos();
     }
 
-    public void evaluarGrupos() {
-        int grupoR;
-        boolean cambio;
-        ArrayList<Integer> gruposR = new ArrayList<>();
-        ArrayList<Integer> posiciones = new ArrayList<>();
-        boolean primero = true;
-
-        int itercion = 0;
-        for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
-            for (int j = 0; j < grupos.size(); j++) {
-                apuntador.clear();
-                for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
-                    itercion++;
-                    if (grupoEstados.get(i).getGrupo() == grupos.get(j)) {
-                        apuntador.add(obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(), elementos.getSimbolo(k))));
-                    }
-                }
-                procesar(k, j, itercion);
+    private boolean yaExiste(String estadoOrigen) {
+        for (int i = 0; i < grupoEstados.size(); i++) {
+            if (grupoEstados.get(i).getEstado().equals(estadoOrigen)) {
+                return true;
             }
         }
+        return false;
     }
 
-    private void procesar(int posicionSimbolo, int posicionGrupo, int iteracion) {
-        gruporeferencia.clear();
-        gruporeferencia.add(apuntador.get(0));
-        for (int i = 1; i < apuntador.size(); i++) {
-            for (int j = 0; j < gruporeferencia.size(); j++) {
-                if (apuntador.get(i) == apuntador.get(j)) {
-                    break;
-                } else {
-                    grupos.add(grupoMax() + 1);
-                    
+    public void evaluarGrupos() {
+        boolean cambio = false;
+        for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
+            for (int j = 0; j < grupos.size(); j++) {
+                apuntadorAGrupo.clear();
+                posicion.clear();
+                for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
+
+                    if (grupoEstados.get(i).getGrupo() == grupos.get(j)) {
+                        apuntadorAGrupo.add(obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(), elementos.getSimbolo(k))));
+                        posicion.add(i);
+                    }
+                }
+                cambio = procesar();
+                if (cambio) {
+                    k = 0;
+                    cambio = false;
                 }
             }
-
         }
+        mostrarGE();
+    }
+
+    private boolean procesar() {
+        boolean cambio = false;
+        gruporeferencia.clear();
+        gruporeferencia.add(apuntadorAGrupo.get(0));
+        for (int i = 1; i < apuntadorAGrupo.size(); i++) {
+            for (int j = 0; j < gruporeferencia.size(); j++) {
+                if (apuntadorAGrupo.get(i) == apuntadorAGrupo.get(j)) {
+                    break;
+                } else {
+                    gruporeferencia.add(grupoMax() + 1);
+                    grupoEstados.get(posicion.get(i)).setGrupo(grupoMax() + 1);
+                    grupos.add(grupoMax() + 1);
+                    cambio = true;
+                }
+            }
+        }
+        return cambio;
     }
 
 
@@ -73,6 +94,13 @@ public class ConexionAFDR {
             }
         }
         return null;
+    }
+
+    public void mostrarGE() {
+        System.out.println("--");
+        for (int i = 0; i < grupoEstados.size(); i++) {
+            System.out.println(grupoEstados.get(i).getGrupo() + " - " + grupoEstados.get(i).getEstado());
+        }
     }
 
     public int obtenerApuntadorDeEstado(String estado) {
@@ -87,11 +115,13 @@ public class ConexionAFDR {
     public int grupoMax() {
         int max = 0;
         for (int i = 0; i < grupoEstados.size(); i++) {
-            if (grupoEstados.get(i).getGrupo() > max) {
+            if (grupoEstados.get(i).getGrupo() >= max) {
                 max = grupoEstados.get(i).getGrupo();
+                System.out.println("Maximo es "+max);
             }
         }
         return max;
+
     }
   /*
 
