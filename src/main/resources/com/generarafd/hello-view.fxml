@@ -22,8 +22,8 @@
                      <children>
                         <Label text="Expresion Regular" />
                         <TextField />
-                        <Button mnemonicParsing="false" onAction="#btnConvertir" text="Convertir" />
-                        <Button mnemonicParsing="false" onAction="#btnCerrar" text="Cerrar Programa" />
+                        <Button mnemonicParsing="false" onAction="#convertir" text="Convertir" />
+                        <Button mnemonicParsing="false" onAction="#cerrar" text="Cerrar Programa" />
                         <Label fx:id="txtNota" text="Nota" />
                      </children>
                      <padding>
@@ -44,7 +44,7 @@
                                  <children>
                                     <Label text="Transiciones" />
                                     <TextArea fx:id="tATransiciones" prefHeight="300.0" prefWidth="200.0" />
-                                    <Button mnemonicParsing="false" onAction="#Transiciones" text="Continuar" />
+                                    <Button mnemonicParsing="false" onAction="#transiciones" text="Continuar" />
                                  </children>
                                  <padding>
                                     <Insets left="20.0" right="20.0" top="20.0" />
@@ -102,7 +102,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab fx:id="tabAsignarVariables" disable="true" text="Asignar Variables">
+                  <Tab fx:id="tabAsignarVariables" disable="true" onSelectionChanged="#asignarVariables" text="Asignar Variables">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -121,7 +121,7 @@
                                        <children>
                                           <Label text="Automata Finito Resultante" />
                                           <TextArea fx:id="tAAFResultante" prefHeight="300.0" prefWidth="200.0" />
-                                          <Button mnemonicParsing="false" onAction="#asignarVariables" text="Continuar" />
+                                          <Button mnemonicParsing="false" text="Continuar" />
                                        </children>
                                        <padding>
                                           <Insets left="20.0" right="20.0" top="20.0" />
