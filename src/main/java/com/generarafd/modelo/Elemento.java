@@ -19,7 +19,7 @@ public class Elemento {
     }
 
     public String stringAFD() {
-        StringBuilder cadena= new StringBuilder();
+        StringBuilder cadena = new StringBuilder();
         for (int i = 0; i < getSizeAFD(); i++) {
             cadena.append(transicionesAFD.get(i).mostrar2()).append("\n");
         }
@@ -69,7 +69,7 @@ public class Elemento {
     }
 
     public String stringER() {
-        StringBuilder cadena= new StringBuilder();
+        StringBuilder cadena = new StringBuilder();
         for (int i = 0; i < getSizeER(); i++) {
             cadena.append(transicionesER.get(i).mostrar()).append("\n");
         }
@@ -115,9 +115,17 @@ public class Elemento {
     }
 
     public String stringAFDN() {
-        StringBuilder cadena= new StringBuilder();
+        StringBuilder cadena = new StringBuilder();
         for (TransicionAFD afdVariable : AFDVariables) {
             cadena.append(afdVariable.mostrar()).append("\n");
+        }
+        return cadena.toString();
+    }
+
+    public String stringAFDNT() {//crear Matriz
+        String cadena = "";
+        for (int i = 0; i < AFDVariables.size(); i++) {
+
         }
         return cadena.toString();
     }
