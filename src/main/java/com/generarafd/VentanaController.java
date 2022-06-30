@@ -3,10 +3,10 @@ package com.generarafd;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class VentanaController {
+
     @FXML
     private Button btnConvertir;
     @FXML
