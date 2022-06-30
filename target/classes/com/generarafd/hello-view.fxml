@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.generarafd.HelloController">
    <children>
       <BorderPane layoutX="191.0" layoutY="150.0" prefHeight="500.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -22,8 +22,8 @@
                      <children>
                         <Label text="Expresion Regular" />
                         <TextField />
-                        <Button mnemonicParsing="false" text="Convertir" />
-                        <Button mnemonicParsing="false" text="Cerrar Programa" />
+                        <Button fx:id="btnConvertir" mnemonicParsing="false" onAction="#convertir" text="Convertir" />
+                        <Button mnemonicParsing="false" onAction="#cerrar" text="Cerrar Programa" />
                         <Label fx:id="txtNota" text="Nota" />
                      </children>
                      <padding>
@@ -36,7 +36,7 @@
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab fx:id="tabTransiciones" text="Transiciones de ER">
+                <Tab fx:id="tabTransiciones" disable="true" text="Transiciones de ER">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -44,7 +44,7 @@
                                  <children>
                                     <Label text="Transiciones" />
                                     <TextArea fx:id="tATransiciones" prefHeight="300.0" prefWidth="200.0" />
-                                    <Button mnemonicParsing="false" text="Continuar" />
+                                    <Button mnemonicParsing="false" onAction="#transiciones" text="Continuar" />
                                  </children>
                                  <padding>
                                     <Insets left="20.0" right="20.0" top="20.0" />
@@ -62,7 +62,7 @@
                                  <children>
                                     <Label text="Cierre Lambda" />
                                     <TextArea fx:id="tACierreLambda" prefHeight="300.0" prefWidth="200.0" />
-                                    <Button mnemonicParsing="false" text="Continuar" />
+                                    <Button mnemonicParsing="false" onAction="#cierreLambda" text="Continuar" />
                                  </children>
                                  <padding>
                                     <Insets left="20.0" right="20.0" top="20.0" />
@@ -91,7 +91,7 @@
                                        <children>
                                           <Label text="Estados Resultantes" />
                                           <TextArea fx:id="tAEstadosResultantes" prefHeight="300.0" prefWidth="200.0" />
-                                          <Button mnemonicParsing="false" text="Continuar" />
+                                          <Button mnemonicParsing="false" onAction="#nuevosEstados" text="Continuar" />
                                        </children>
                                        <padding>
                                           <Insets left="20.0" right="20.0" top="20.0" />
@@ -121,7 +121,7 @@
                                        <children>
                                           <Label text="Automata Finito Resultante" />
                                           <TextArea fx:id="tAAFResultante" prefHeight="300.0" prefWidth="200.0" />
-                                          <Button mnemonicParsing="false" text="Continuar" />
+                                          <Button mnemonicParsing="false" onAction="#asignarVariables" text="Continuar" />
                                        </children>
                                        <padding>
                                           <Insets left="20.0" right="20.0" top="20.0" />
@@ -132,7 +132,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab disable="true" text="AFD Minimo">
+                  <Tab fx:id="tabAFDM" disable="true" text="AFD Minimo">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
