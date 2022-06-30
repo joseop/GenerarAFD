@@ -19,11 +19,11 @@ public class Elemento {
     }
 
     public String stringAFD() {
-        String cadena="";
+        StringBuilder cadena= new StringBuilder();
         for (int i = 0; i < getSizeAFD(); i++) {
-            cadena=cadena+transicionesAFD.get(i).mostrar()+"\n";
+            cadena.append(transicionesAFD.get(i).mostrar()).append("\n");
         }
-        return cadena;
+        return cadena.toString();
     }
 
     public int getSizeAFD() {
@@ -68,17 +68,12 @@ public class Elemento {
         transicionesER.remove(i);
     }
 
-    public void mostrarER() {
-        for (int i = 0; i < getSizeER(); i++) {
-            System.out.println(transicionesER.get(i).mostrar());
-        }
-    }
     public String stringER() {
-        String cadena="";
+        StringBuilder cadena= new StringBuilder();
         for (int i = 0; i < getSizeER(); i++) {
-            cadena=cadena+transicionesER.get(i).mostrar()+"\n";
+            cadena.append(transicionesER.get(i).mostrar()).append("\n");
         }
-        return cadena;
+        return cadena.toString();
     }
 
     public int getSizeER() {
@@ -120,11 +115,11 @@ public class Elemento {
     }
 
     public String stringAFDN() {
-        String cadena="";
+        StringBuilder cadena= new StringBuilder();
         for (TransicionAFD afdVariable : AFDVariables) {
-            cadena=cadena+afdVariable.mostrar()+"\n";
+            cadena.append(afdVariable.mostrar()).append("\n");
         }
-        return cadena;
+        return cadena.toString();
     }
 
     public void addAFDN(TransicionAFD transicionAFD) {
@@ -137,11 +132,11 @@ public class Elemento {
     }
 
     public String stringAFDMinimo() {
-        String cadena ="";
+        StringBuilder cadena = new StringBuilder();
         for (int i = 0; i < getSizeAFDMinimo(); i++) {
-            cadena=cadena+AFDMinimo.get(i).mostrar()+"\n";
+            cadena.append(AFDMinimo.get(i).mostrar()).append("\n");
         }
-        return cadena;
+        return cadena.toString();
     }
 
     public int getSizeAFDMinimo() {

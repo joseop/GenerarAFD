@@ -46,26 +46,16 @@ public class CierreLambda {
     }
 
 
-    public void mostrarMatriz() {
-        for (int[] ints : matrizCierreLambda) {
-            for (int j = 0; j < matrizCierreLambda.length; j++) {
-                if (ints[j] != 0) {
-                    System.out.print(ints[j] + " ");
-                }
-            }
-            System.out.println();
-        }
-    }
     public static String stringMatriz() {
-        String cadena="";
+        StringBuilder cadena= new StringBuilder();
         for (int[] ints : matrizCierreLambda) {
             for (int j = 0; j < matrizCierreLambda.length; j++) {
                 if (ints[j] != 0) {
-                    cadena=cadena+ints[j] + " ";
+                    cadena.append(ints[j]).append(" ");
                 }
             }
-            cadena=cadena+"\n";
-        }return cadena;
+            cadena.append("\n");
+        }return cadena.toString();
     }
 
     private boolean existeEnFila(int dato, int fila) {

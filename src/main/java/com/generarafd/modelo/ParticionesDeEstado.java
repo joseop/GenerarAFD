@@ -43,7 +43,7 @@ public class ParticionesDeEstado {
     }
 
     public void evaluarGrupos() {
-        boolean cambio = false;
+        boolean cambio;
         for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
             for (Integer grupo : grupos) {
                 apuntadorAGrupo.clear();
@@ -97,17 +97,17 @@ public class ParticionesDeEstado {
     }
 
     public static String stringGE() {
-        String cadena="";
+        StringBuilder cadena= new StringBuilder();
         for (int i = 0; i <=grupoDeMayorGrado() ; i++) {
-            cadena=cadena+"p"+i+" : ";
-            for (int j = 0; j < grupoEstados.size(); j++) {
-                if (i==grupoEstados.get(j).getGrupo()) {
-                    cadena=cadena+" "+grupoEstados.get(j).getEstado();
+            cadena.append("p").append(i).append(" : ");
+            for (GrupoEstado grupoEstado : grupoEstados) {
+                if (i == grupoEstado.getGrupo()) {
+                    cadena.append(" ").append(grupoEstado.getEstado());
                 }
             }
-            cadena=cadena+"\n";
+            cadena.append("\n");
         }
-        return cadena;
+        return cadena.toString();
     }
 
     public int obtenerApuntadorDeEstado(String estado) {

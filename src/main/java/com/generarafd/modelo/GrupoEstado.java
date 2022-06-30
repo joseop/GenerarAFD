@@ -13,10 +13,6 @@ public class GrupoEstado {
         return estado;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     public int getGrupo() {
         return grupo;
     }

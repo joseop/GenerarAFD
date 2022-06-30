@@ -3,7 +3,7 @@ package com.generarafd.modelo;
 public class TransicionER {
     private int estadoOrigen;
     private int estadoFinal;
-    private String simboloIngresado;
+    private final String simboloIngresado;
 
     public TransicionER(int estadoOrigen, int estadoFinal, String simboloIngresado) {
         this.estadoOrigen = estadoOrigen;
@@ -29,10 +29,6 @@ public class TransicionER {
 
     public String getSimboloIngresado() {
         return simboloIngresado;
-    }
-
-    public void setSimboloIngresado(String simboloIngresado) {
-        this.simboloIngresado = simboloIngresado;
     }
 
     public String mostrar() {

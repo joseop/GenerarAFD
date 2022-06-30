@@ -21,19 +21,11 @@ public class ConstruirAFDSinLambda {
     }
 
     public static String stringNuevosEstadosAsignados() {
-        String cadena ="";
+        StringBuilder cadena = new StringBuilder();
         for (int i = 0; i < estadosEnString.size(); i++) {
-            cadena=cadena+(i+1)+" : "+estadosEnString.get(i)+"\n";
+            cadena.append(i + 1).append(" : ").append(estadosEnString.get(i)).append("\n");
         }
-        return cadena;
-    }
-
-    public int getEstadosSize() {
-        return nuevosEstadosEnVectores.size();
-    }
-
-    public int[] getEstado(int i) {
-        return nuevosEstadosEnVectores.get(i);
+        return cadena.toString();
     }
 
     public int getEstadosssSize() {
@@ -56,11 +48,11 @@ public class ConstruirAFDSinLambda {
     }
 
     public static String stringNuevosEstados() {
-        String cadena ="";
+        StringBuilder cadena = new StringBuilder();
         for (String s : estadosEnString) {
-            cadena=cadena+s+"\n";
+            cadena.append(s).append("\n");
         }
-        return cadena;
+        return cadena.toString();
     }
 
     private void evaluarCierreLambdaInicial() {
