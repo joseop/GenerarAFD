@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class CierreLambda {
-    private final Elemento elementos = new Elemento();
+    private static final Elemento elementos = new Elemento();
     private static final ArrayList<Boolean> yaProcesado = new ArrayList<>();
-    private final int[][] matrizCierreLambda = new int[elementos.getAceptacion()][elementos.getAceptacion()];
+    private static final int[][] matrizCierreLambda = new int[elementos.getAceptacion()][elementos.getAceptacion()];
 
     public CierreLambda() {
-        elementos.mostrarER();
         buscarCierreLambda();
-        mostrarMatriz();
         new ConstruirAFDSinLambda(matrizCierreLambda);
     }
 
@@ -57,6 +55,17 @@ public class CierreLambda {
             }
             System.out.println();
         }
+    }
+    public static String stringMatriz() {
+        String cadena="";
+        for (int[] ints : matrizCierreLambda) {
+            for (int j = 0; j < matrizCierreLambda.length; j++) {
+                if (ints[j] != 0) {
+                    cadena=cadena+ints[j] + " ";
+                }
+            }
+            cadena=cadena+"\n";
+        }return cadena;
     }
 
     private boolean existeEnFila(int dato, int fila) {

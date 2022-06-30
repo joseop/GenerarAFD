@@ -1,9 +1,6 @@
 package com.generarafd.modelo;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class Elemento {
     private static final ArrayList<TransicionAFD> transicionesAFD = new ArrayList<>();
@@ -21,10 +18,12 @@ public class Elemento {
         transicionesAFD.add(transicionAFD);
     }
 
-    public void mostrarAFD() {
+    public String stringAFD() {
+        String cadena="";
         for (int i = 0; i < getSizeAFD(); i++) {
-            System.out.println(transicionesAFD.get(i).mostrar());
+            cadena=cadena+transicionesAFD.get(i).mostrar()+"\n";
         }
+        return cadena;
     }
 
     public int getSizeAFD() {
@@ -74,6 +73,13 @@ public class Elemento {
             System.out.println(transicionesER.get(i).mostrar());
         }
     }
+    public String stringER() {
+        String cadena="";
+        for (int i = 0; i < getSizeER(); i++) {
+            cadena=cadena+transicionesER.get(i).mostrar()+"\n";
+        }
+        return cadena;
+    }
 
     public int getSizeER() {
         return transicionesER.size();
@@ -113,10 +119,12 @@ public class Elemento {
         return AFDVariables.size();
     }
 
-    public void mostrarAFDN() {
+    public String stringAFDN() {
+        String cadena="";
         for (TransicionAFD afdVariable : AFDVariables) {
-            System.out.println(afdVariable.mostrar());
+            cadena=cadena+afdVariable.mostrar()+"\n";
         }
+        return cadena;
     }
 
     public void addAFDN(TransicionAFD transicionAFD) {
@@ -128,10 +136,12 @@ public class Elemento {
         AFDMinimo.add(transicionAFD);
     }
 
-    public void mostrarAFDMinimo() {
+    public String stringAFDMinimo() {
+        String cadena ="";
         for (int i = 0; i < getSizeAFDMinimo(); i++) {
-            System.out.println(AFDMinimo.get(i).mostrar());
+            cadena=cadena+AFDMinimo.get(i).mostrar()+"\n";
         }
+        return cadena;
     }
 
     public int getSizeAFDMinimo() {

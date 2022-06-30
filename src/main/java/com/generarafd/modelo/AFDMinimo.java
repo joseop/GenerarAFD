@@ -12,7 +12,6 @@ public class AFDMinimo {
         this.grupoEstados = grupoEstados;
         this.grupos = grupos;
         nuevosEstadosAFDM();
-        elementos.mostrarAFDMinimo();
     }
 
     private void convertirGruposAAFDMinimoO() {

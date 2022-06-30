@@ -12,9 +12,7 @@ public class ParticionesDeEstado {
     private static final ArrayList<Integer> gruporeferencia = new ArrayList<>();
 
     public ParticionesDeEstado() {
-        elementos.mostrarAFDN();
         gruposIniciales();
-        mostrarGE();
         new AFDMinimo(grupoEstados,grupos);
     }
 
@@ -98,11 +96,18 @@ public class ParticionesDeEstado {
         return null;
     }
 
-    public void mostrarGE() {
-        System.out.println("--");
-        for (GrupoEstado estado : grupoEstados) {
-            System.out.println(estado.getGrupo() + " - " + estado.getEstado());
+    public static String stringGE() {
+        String cadena="";
+        for (int i = 0; i <=grupoDeMayorGrado() ; i++) {
+            cadena=cadena+"p"+i+" : ";
+            for (int j = 0; j < grupoEstados.size(); j++) {
+                if (i==grupoEstados.get(j).getGrupo()) {
+                    cadena=cadena+" "+grupoEstados.get(j).getEstado();
+                }
+            }
+            cadena=cadena+"\n";
         }
+        return cadena;
     }
 
     public int obtenerApuntadorDeEstado(String estado) {
@@ -114,7 +119,7 @@ public class ParticionesDeEstado {
         return 0;
     }
 
-    public int grupoDeMayorGrado() {
+    public static int grupoDeMayorGrado() {
         int max = 0;
         for (GrupoEstado estado : grupoEstados) {
             if (estado.getGrupo() >= max) {

@@ -20,6 +20,14 @@ public class ConstruirAFDSinLambda {
         new AsignarVariableNumericaAEstado();
     }
 
+    public static String stringNuevosEstadosAsignados() {
+        String cadena ="";
+        for (int i = 0; i < estadosEnString.size(); i++) {
+            cadena=cadena+(i+1)+" : "+estadosEnString.get(i)+"\n";
+        }
+        return cadena;
+    }
+
     public int getEstadosSize() {
         return nuevosEstadosEnVectores.size();
     }
@@ -45,25 +53,14 @@ public class ConstruirAFDSinLambda {
         }
         nuevosEstadosEnVectores.add(aux);
         evaluarCierreLambdaInicial();
-        mostrar();
     }
 
-    public void mostrar() {
-        System.out.println("\nNuevos Estados");
-        for (int[] nuevosEstadosEnVectore : nuevosEstadosEnVectores) {
-            for (int i : nuevosEstadosEnVectore) {
-                if (i == 0) {
-                    continue;
-                }
-                System.out.print(i + " ");
-            }
-            System.out.println("");
-        }
-
-        System.out.println("\nNuevos Estados en String");
+    public static String stringNuevosEstados() {
+        String cadena ="";
         for (String s : estadosEnString) {
-            System.out.println(s);
+            cadena=cadena+s+"\n";
         }
+        return cadena;
     }
 
     private void evaluarCierreLambdaInicial() {
@@ -98,7 +95,7 @@ public class ConstruirAFDSinLambda {
         boolean a = false;
         for (int anInt : vectorEstadoInicial) {
             if (anInt != 0) {
-                estadoInicial.append(",").append(anInt);
+                estadoInicial.append(" ").append(anInt);
                 if (elementos.getAceptacion() == anInt) {
                     a = true;
                 }
@@ -106,7 +103,7 @@ public class ConstruirAFDSinLambda {
         }
         for (int j : vectorEstadoFinal) {
             if (j != 0) {
-                estadoFinal.append(",").append(j);
+                estadoFinal.append(" ").append(j);
             }
         }
         estadoInicial= new StringBuilder(estadoInicial.substring(1, estadoInicial.length()));

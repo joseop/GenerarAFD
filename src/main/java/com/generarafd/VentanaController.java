@@ -1,11 +1,16 @@
 package com.generarafd;
 
+import com.generarafd.modelo.*;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 
-public class VentanaController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class VentanaController implements Initializable {
 
     @FXML
     private Button btnConvertir;
@@ -37,6 +42,8 @@ public class VentanaController {
     private Tab tabTransiciones;
     @FXML
     private Label txtNota;
+    Elemento elementos = new Elemento();
+
 
     private void desactivarTab(){
         tabTransiciones.setDisable(true);
@@ -48,6 +55,8 @@ public class VentanaController {
     @FXML
     void asignarVariables(ActionEvent event) {
         tabAFDM.setDisable(false);
+        tAGrupos.setText(ParticionesDeEstado.stringGE());
+        tAAFDM.setText(elementos.stringAFDMinimo());
         btnConvertir.setDisable(false);
     }
 
@@ -59,11 +68,14 @@ public class VentanaController {
     @FXML
     void cierreLambda(ActionEvent event) {
         tabNuevosEstados.setDisable(false);
+        tAEvaluarCierreLambda.setText(elementos.stringAFD());
+        tAEstadosResultantes.setText(ConstruirAFDSinLambda.stringNuevosEstados());
     }
 
     @FXML
     void convertir(ActionEvent event) {
         desactivarTab();
+        tATransiciones.setText(elementos.stringER());
         btnConvertir.setDisable(true);
         tabTransiciones.setDisable(false);
     }
@@ -71,11 +83,18 @@ public class VentanaController {
     @FXML
     void nuevosEstados(ActionEvent event) {
         tabAsignarVariables.setDisable(false);
+        tAAFResultante.setText(elementos.stringAFDN());
+        tAAsignarVariables.setText(ConstruirAFDSinLambda.stringNuevosEstadosAsignados());
     }
 
     @FXML
     void transiciones(ActionEvent event) {
         tabCierreLambda.setDisable(false);
+        tACierreLambda.setText(CierreLambda.stringMatriz());
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        new LeerER("(0|1.0*.1)*.0*");
     }
 }
