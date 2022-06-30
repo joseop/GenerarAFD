@@ -5,14 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -22,11 +19,11 @@
                <children>
                   <VBox alignment="CENTER" layoutX="86.0" layoutY="81.0" prefHeight="500.0" prefWidth="200.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label text="Label" />
+                        <Label text="Expresion Regular" />
                         <TextField />
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Cerrar Programa" />
-                        <Label text="Nota" />
+                        <Button mnemonicParsing="false" onAction="#btnConvertir" text="Convertir" />
+                        <Button mnemonicParsing="false" onAction="#btnCerrar" text="Cerrar Programa" />
+                        <Label fx:id="txtNota" text="Nota" />
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />
@@ -38,57 +35,57 @@
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
-                <Tab disable="true" text="1">
+                <Tab fx:id="tabTransiciones" disable="true" text="Transiciones de ER">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <HBox layoutX="101.0" layoutY="185.0" prefHeight="469.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <TableView prefHeight="200.0" prefWidth="200.0">
-                                      <columns>
-                                        <TableColumn prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
-                                      </columns>
-                                    </TableView>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="Label" />
-                                          <Button mnemonicParsing="false" text="Button" />
-                                       </children>
-                                    </VBox>
+                                    <Label text="Transiciones" />
+                                    <TextArea fx:id="tATransiciones" prefHeight="300.0" prefWidth="200.0" />
+                                    <Button mnemonicParsing="false" onAction="#continuarTransiciones" text="Continuar" />
                                  </children>
-                              </HBox>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab disable="true" text="2">
+                <Tab disable="true" text="Cierre Lambda">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <HBox prefHeight="469.0" prefWidth="700.0">
+                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0">
                                  <children>
-                                    <TableView prefHeight="200.0" prefWidth="200.0">
-                                       <columns>
-                                          <TableColumn prefWidth="75.0" text="C1" />
-                                          <TableColumn prefWidth="75.0" text="C2" />
-                                       </columns>
-                                    </TableView>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Label text="Label" />
-                                          <Button mnemonicParsing="false" text="Button" />
-                                       </children>
-                                    </VBox>
+                                    <Label text="Cierre Lambda" />
+                                    <TextArea fx:id="tACierreLambda" prefHeight="300.0" prefWidth="200.0" />
+                                    <Button mnemonicParsing="false" onAction="#cierreLambda" text="Continuar" />
                                  </children>
-                              </HBox>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab disable="true" text="3">
+                  <Tab disable="true" text="Nuevos Estados">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0">
+                                 <children>
+                                    <Label text="Cierre Lambda" />
+                                    <TextArea fx:id="tACierreLambda1" prefHeight="300.0" prefWidth="200.0" />
+                                    <Button mnemonicParsing="false" onAction="#cierreLambda" text="Continuar" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children></AnchorPane>
                     </content>
                   </Tab>
                   <Tab disable="true" text="4">
@@ -97,11 +94,6 @@
                     </content>
                   </Tab>
                   <Tab disable="true" text="5">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                  </Tab>
-                  <Tab disable="true" text="6">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
