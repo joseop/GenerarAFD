@@ -47,15 +47,19 @@ public class CierreLambda {
 
 
     public static String stringMatriz() {
-        StringBuilder cadena= new StringBuilder();
+        StringBuilder cadena = new StringBuilder();
+        int i = 1;
         for (int[] ints : matrizCierreLambda) {
+            cadena.append(i).append("λ: ");
+            i++;
             for (int j = 0; j < matrizCierreLambda.length; j++) {
                 if (ints[j] != 0) {
                     cadena.append(ints[j]).append(" ");
                 }
             }
             cadena.append("\n");
-        }return cadena.toString();
+        }
+        return cadena.toString();
     }
 
     private boolean existeEnFila(int dato, int fila) {

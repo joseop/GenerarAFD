@@ -21,7 +21,7 @@ public class Elemento {
     public String stringAFD() {
         StringBuilder cadena= new StringBuilder();
         for (int i = 0; i < getSizeAFD(); i++) {
-            cadena.append(transicionesAFD.get(i).mostrar()).append("\n");
+            cadena.append(transicionesAFD.get(i).mostrar2()).append("\n");
         }
         return cadena.toString();
     }
@@ -142,5 +142,6 @@ public class Elemento {
     public int getSizeAFDMinimo() {
         return AFDMinimo.size();
     }
+
 
 }

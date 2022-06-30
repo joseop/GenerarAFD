@@ -32,4 +32,8 @@ public class TransicionAFD {
     public String mostrar() {
         return getEstadoOrigen() + "  ---  " + getSimboloIngresado() + "  --->  " + getEstadoFinal() + "  =  " + isAceptacion();
     }
+
+    public String mostrar2() {
+        return getEstadoOrigen() + " {" + getSimboloIngresado() + "}  =  " + getEstadoFinal();
+    }
 }

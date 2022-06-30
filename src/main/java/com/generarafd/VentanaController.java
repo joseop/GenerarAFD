@@ -31,6 +31,8 @@ public class VentanaController implements Initializable {
     @FXML
     private TextArea tATransiciones;
     @FXML
+    private TextField tFER;
+    @FXML
     private Tab tabAsignarVariables;
     @FXML
     private Tab tabCierreLambda;
@@ -95,6 +97,6 @@ public class VentanaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        new LeerER("(0|1.0*.1)*.0*");
+        new LeerER(tFER.getText());
     }
 }

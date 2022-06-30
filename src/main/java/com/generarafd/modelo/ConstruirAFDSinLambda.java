@@ -23,7 +23,7 @@ public class ConstruirAFDSinLambda {
     public static String stringNuevosEstadosAsignados() {
         StringBuilder cadena = new StringBuilder();
         for (int i = 0; i < estadosEnString.size(); i++) {
-            cadena.append(i + 1).append(" : ").append(estadosEnString.get(i)).append("\n");
+            cadena.append(i + 1).append(" = ").append(estadosEnString.get(i)).append("\n");
         }
         return cadena.toString();
     }
