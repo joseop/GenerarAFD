@@ -10,6 +10,13 @@ public class ParticionesDeEstado {
     private static final ArrayList<Integer> apuntadorAGrupo = new ArrayList<>();
     private static final ArrayList<Integer> posicion = new ArrayList<>();
     private static final ArrayList<Integer> gruporeferencia = new ArrayList<>();
+    public static void vaciar() {
+        grupoEstados.clear();
+        grupos.clear();
+        apuntadorAGrupo.clear();
+        posicion.clear();
+        gruporeferencia.clear();
+    }
 
     public ParticionesDeEstado() {
         gruposIniciales();
@@ -128,4 +135,5 @@ public class ParticionesDeEstado {
         }
         return max;
     }
+
 }

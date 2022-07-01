@@ -8,6 +8,12 @@ public class AFDMinimo {
     private static ArrayList<Integer> grupos = new ArrayList<>();
     private static final ArrayList<String> nuevosEstados = new ArrayList<>();
 
+    public static void vaciar() {
+        grupoEstados.clear();
+        grupos.clear();
+        nuevosEstados.clear();
+    }
+
     public AFDMinimo(ArrayList<GrupoEstado> grupoEstados, ArrayList<Integer> grupos) {
         AFDMinimo.grupoEstados = grupoEstados;
         AFDMinimo.grupos = grupos;

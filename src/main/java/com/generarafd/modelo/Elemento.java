@@ -152,4 +152,11 @@ public class Elemento {
     }
 
 
+    public void vaciar() {
+        transicionesAFD.clear();
+        transicionesER.clear();
+        simbolos.clear();
+        AFDVariables.clear();
+        AFDMinimo.clear();
+    }
 }

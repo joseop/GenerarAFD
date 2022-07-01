@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class VentanaController implements Initializable {
+public class VentanaController {
 
     @FXML
     private Button btnConvertir;
@@ -46,6 +46,14 @@ public class VentanaController implements Initializable {
     private Label txtNota;
     Elemento elementos = new Elemento();
 
+    public void vaciar(){
+        elementos.vaciar();
+        ParticionesDeEstado.vaciar();
+        ConstruirAFDSinLambda.vaciar();
+        CierreLambda.vaciar();
+        AFDMinimo.vaciar();
+    }
+
 
     private void desactivarTab(){
         tabTransiciones.setDisable(true);
@@ -60,6 +68,7 @@ public class VentanaController implements Initializable {
         tAGrupos.setText(ParticionesDeEstado.stringGE());
         tAAFDM.setText(elementos.stringAFDMinimo());
         btnConvertir.setDisable(false);
+        vaciar();
     }
 
     @FXML
@@ -77,6 +86,7 @@ public class VentanaController implements Initializable {
     @FXML
     void convertir(ActionEvent event) {
         desactivarTab();
+        new LeerER(tFER.getText());
         tATransiciones.setText(elementos.stringER());
         btnConvertir.setDisable(true);
         tabTransiciones.setDisable(false);
@@ -95,8 +105,4 @@ public class VentanaController implements Initializable {
         tACierreLambda.setText(CierreLambda.stringMatriz());
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        new LeerER(tFER.getText());
-    }
 }

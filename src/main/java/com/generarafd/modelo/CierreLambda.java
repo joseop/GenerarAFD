@@ -7,7 +7,14 @@ public class CierreLambda {
     private static final Elemento elementos = new Elemento();
     private static final ArrayList<Boolean> yaProcesado = new ArrayList<>();
     private static final int[][] matrizCierreLambda = new int[elementos.getAceptacion()][elementos.getAceptacion()];
-
+    public static void vaciar() {
+        yaProcesado.clear();
+        for (int i = 0; i < matrizCierreLambda.length ; i++) {
+            for (int j = 0; j < matrizCierreLambda.length; j++) {
+                matrizCierreLambda[i][j]=0;
+            }
+        }
+    }
     public CierreLambda() {
         buscarCierreLambda();
         new ConstruirAFDSinLambda(matrizCierreLambda);

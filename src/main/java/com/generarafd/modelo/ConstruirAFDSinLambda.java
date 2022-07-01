@@ -10,6 +10,11 @@ public class ConstruirAFDSinLambda {
     static final ArrayList<int[]> nuevosEstadosEnVectores = new ArrayList<>();
     static final ArrayList<String> estadosEnString = new ArrayList<>();
     private int[][] matrizCierreLambda;
+    public static void vaciar() {
+        nuevosEstadosEnVectores.clear();
+        estadosEnString.clear();
+
+    }
 
     public ConstruirAFDSinLambda() {
     }
@@ -98,11 +103,6 @@ public class ConstruirAFDSinLambda {
                 estadoFinal.append(" ").append(j);
             }
         }
-        estadoInicial = new StringBuilder(estadoInicial.substring(1, estadoInicial.length()));
-        estadoFinal = new StringBuilder(estadoFinal.substring(1, estadoFinal.length()));
-
-        estadoInicial = new StringBuilder(estadoInicial.substring(1, estadoInicial.length()));
-        estadoFinal = new StringBuilder(estadoFinal.substring(1, estadoFinal.length()));
         if (existeCadenaEnEstadosString(estadoInicial.toString())) {
             estadosEnString.add(estadoInicial.toString());
         }

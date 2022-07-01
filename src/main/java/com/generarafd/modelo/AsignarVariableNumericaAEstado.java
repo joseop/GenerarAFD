@@ -4,7 +4,9 @@ package com.generarafd.modelo;
 public class AsignarVariableNumericaAEstado {
     private static final ConstruirAFDSinLambda estados = new ConstruirAFDSinLambda();
     private final Elemento elementos = new Elemento();
+    public void vaciar() {
 
+    }
     public AsignarVariableNumericaAEstado() {
         convertirEstadosEnVariablesNumericas();
         new ParticionesDeEstado();
