@@ -7,9 +7,11 @@ import java.util.Objects;
 public class ConstruirAFDSinLambda {
 
     private final Elemento elementos = new Elemento();
+
     static final ArrayList<int[]> nuevosEstadosEnVectores = new ArrayList<>();
     static final ArrayList<String> estadosEnString = new ArrayList<>();
     private int[][] matrizCierreLambda;
+
     public static void vaciar() {
         nuevosEstadosEnVectores.clear();
         estadosEnString.clear();
@@ -17,6 +19,7 @@ public class ConstruirAFDSinLambda {
     }
 
     public ConstruirAFDSinLambda() {
+
     }
 
     public ConstruirAFDSinLambda(int[][] matriz) {
@@ -54,8 +57,10 @@ public class ConstruirAFDSinLambda {
 
     public static String stringNuevosEstados() {
         StringBuilder cadena = new StringBuilder();
+        int i = 1;
         for (String s : estadosEnString) {
-            cadena.append(s).append("\n");
+            cadena.append(i).append(" : ").append(s).append("\n");
+            i++;
         }
         return cadena.toString();
     }
@@ -133,7 +138,9 @@ public class ConstruirAFDSinLambda {
     }
 
     private void agregarNuevoEstadoEnVector(int[] vector) {
+
         nuevosEstadosEnVectores.add(vector);
+
     }
 
     private void agregarEstadoAVector(int estadoFinal, int[] vector) {

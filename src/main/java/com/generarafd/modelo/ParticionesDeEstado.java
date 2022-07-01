@@ -10,6 +10,7 @@ public class ParticionesDeEstado {
     private static final ArrayList<Integer> apuntadorAGrupo = new ArrayList<>();
     private static final ArrayList<Integer> posicion = new ArrayList<>();
     private static final ArrayList<Integer> gruporeferencia = new ArrayList<>();
+
     public static void vaciar() {
         grupoEstados.clear();
         grupos.clear();
@@ -20,9 +21,8 @@ public class ParticionesDeEstado {
 
     public ParticionesDeEstado() {
         gruposIniciales();
-        new AFDMinimo(grupoEstados,grupos);
+        new AFDMinimo(grupoEstados, grupos);
     }
-
 
 
     public void gruposIniciales() {
@@ -38,6 +38,29 @@ public class ParticionesDeEstado {
             }
         }
         evaluarGrupos();
+        eliminarVacios();
+
+    }
+
+    private static void eliminarVacios() {
+        for (int j = 0; j < grupos.size(); j++) {
+            boolean vacio = true;
+            for (int i = 0; i < grupoEstados.size(); i++) {
+                if (grupoEstados.get(i).getGrupo() == grupos.get(j)) {
+                    if (grupoEstados.get(i).getEstado()!=null) {
+                        vacio = false;
+                    }
+                }
+            }
+            if (vacio) {
+                for (int i = 0; i < grupoEstados.size(); i++) {
+                    if (grupoEstados.get(i).getGrupo()==grupos.get(j)) {
+                        grupoEstados.remove(i);
+                    }
+                }
+                grupos.remove(j);
+            }
+        }
     }
 
     private boolean yaExiste(String estadoOrigen) {
@@ -52,7 +75,7 @@ public class ParticionesDeEstado {
     public void evaluarGrupos() {
         boolean cambio;
         for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
-                for (int h = 0; h < grupos.size(); h++) {
+            for (int h = 0; h < grupos.size(); h++) {
                 apuntadorAGrupo.clear();
                 posicion.clear();
                 for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
@@ -104,8 +127,8 @@ public class ParticionesDeEstado {
     }
 
     public static String stringGE() {
-        StringBuilder cadena= new StringBuilder();
-        for (int i = 0; i <=grupoDeMayorGrado() ; i++) {
+        StringBuilder cadena = new StringBuilder();
+        for (int i = 0; i <= grupoDeMayorGrado(); i++) {
             cadena.append("p").append(i).append(" : ");
             for (GrupoEstado grupoEstado : grupoEstados) {
                 if (i == grupoEstado.getGrupo()) {

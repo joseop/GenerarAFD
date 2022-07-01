@@ -2,11 +2,16 @@ package com.generarafd;
 
 import com.generarafd.modelo.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,7 +51,7 @@ public class VentanaController {
     private Label txtNota;
     Elemento elementos = new Elemento();
 
-    public void vaciar(){
+    public void vaciar() {
         elementos.vaciar();
         ParticionesDeEstado.vaciar();
         ConstruirAFDSinLambda.vaciar();
@@ -55,20 +60,21 @@ public class VentanaController {
     }
 
 
-    private void desactivarTab(){
+    private void desactivarTab() {
         tabTransiciones.setDisable(true);
         tabCierreLambda.setDisable(true);
         tabNuevosEstados.setDisable(true);
         tabAsignarVariables.setDisable(true);
         tabAFDM.setDisable(true);
     }
+
     @FXML
     void asignarVariables(ActionEvent event) {
         tabAFDM.setDisable(false);
         tAGrupos.setText(ParticionesDeEstado.stringGE());
         tAAFDM.setText(elementos.stringAFDMinimo());
-        btnConvertir.setDisable(false);
         vaciar();
+        btnConvertir.setDisable(false);
     }
 
     @FXML
@@ -104,5 +110,7 @@ public class VentanaController {
         tabCierreLambda.setDisable(false);
         tACierreLambda.setText(CierreLambda.stringMatriz());
     }
+
+
 
 }
