@@ -85,10 +85,10 @@ public class ConstruirAFDSinLambda {
         StringBuilder estadoInicial = new StringBuilder();
         StringBuilder estadoFinal = new StringBuilder();
         boolean a = false;
-        for (int anInt : vectorEstadoInicial) {
-            if (anInt != 0) {
-                estadoInicial.append(" ").append(anInt);
-                if (elementos.getAceptacion() == anInt) {
+        for (int i = 0; i < vectorEstadoInicial.length; i++) {
+            if (vectorEstadoInicial[i] != 0) {
+                estadoInicial.append(" ").append(vectorEstadoInicial[i]);
+                if (elementos.getAceptacion() == vectorEstadoInicial[i]) {
                     a = true;
                 }
             }
@@ -98,8 +98,11 @@ public class ConstruirAFDSinLambda {
                 estadoFinal.append(" ").append(j);
             }
         }
-        estadoInicial= new StringBuilder(estadoInicial.substring(1, estadoInicial.length()));
-        estadoFinal= new StringBuilder(estadoFinal.substring(1, estadoFinal.length()));
+        estadoInicial = new StringBuilder(estadoInicial.substring(1, estadoInicial.length()));
+        estadoFinal = new StringBuilder(estadoFinal.substring(1, estadoFinal.length()));
+
+        estadoInicial = new StringBuilder(estadoInicial.substring(1, estadoInicial.length()));
+        estadoFinal = new StringBuilder(estadoFinal.substring(1, estadoFinal.length()));
         if (existeCadenaEnEstadosString(estadoInicial.toString())) {
             estadosEnString.add(estadoInicial.toString());
         }

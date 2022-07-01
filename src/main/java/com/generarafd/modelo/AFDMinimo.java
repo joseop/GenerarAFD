@@ -17,11 +17,11 @@ public class AFDMinimo {
     private void convertirGruposAAFDMinimo() {
         String estadoFinal;
         boolean aceptacion;
-        for (String nuevosEstado : nuevosEstados) {
+        for (int i = 0; i <nuevosEstados.size() ; i++) {
             for (int k = 0; k < elementos.getSizeSimbolos(); k++) {
-                estadoFinal = buscarEstadoFinal(nuevosEstado, elementos.getSimbolo(k));
-                aceptacion = esAceptacion(nuevosEstado);
-                elementos.addTransicionAFDMinimo(new TransicionAFD(aceptacion, nuevosEstado, estadoFinal, elementos.getSimbolo(k)));
+                estadoFinal = buscarEstadoFinal(nuevosEstados.get(i), elementos.getSimbolo(k));
+                aceptacion = esAceptacion(nuevosEstados.get(i));
+                elementos.addTransicionAFDMinimo(new TransicionAFD(aceptacion, nuevosEstados.get(i), estadoFinal, elementos.getSimbolo(k)));
             }
         }
     }

@@ -45,11 +45,11 @@ public class ParticionesDeEstado {
     public void evaluarGrupos() {
         boolean cambio;
         for (int k = 0; k < elementos.getSizeSimbolos(); k++) {// Recorre los simbolos
-            for (Integer grupo : grupos) {
+                for (int h = 0; h < grupos.size(); h++) {
                 apuntadorAGrupo.clear();
                 posicion.clear();
                 for (int i = 0; i < grupoEstados.size(); i++) {//Recorre los grupos de los estados
-                    if (grupoEstados.get(i).getGrupo() == grupo) {
+                    if (grupoEstados.get(i).getGrupo() == grupos.get(h)) {
                         apuntadorAGrupo.add(obtenerApuntadorDeEstado(obtenerTransicionAFDN(grupoEstados.get(i).getEstado(), elementos.getSimbolo(k))));
                         posicion.add(i);
                     }
