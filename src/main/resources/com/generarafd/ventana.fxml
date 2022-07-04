@@ -3,16 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.generarafd.VentanaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.generarafd.VentanaController">
    <children>
       <BorderPane layoutX="191.0" layoutY="150.0" prefHeight="500.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -20,11 +19,11 @@
                <children>
                   <VBox alignment="CENTER" layoutX="86.0" layoutY="81.0" prefHeight="500.0" prefWidth="200.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label text="Expresion Regular" />
+                        <Label text="EXPRESION REGULAR" />
+                        <Label text="Ingresar ER" />
                         <TextField fx:id="tFER" />
                         <Button fx:id="btnConvertir" mnemonicParsing="false" onAction="#convertir" text="Convertir" />
                         <Button mnemonicParsing="false" onAction="#cerrar" text="Cerrar Programa" />
-                        <Label fx:id="txtNota" text="Nota" />
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />
@@ -34,135 +33,94 @@
             </AnchorPane>
          </left>
          <center>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-              <tabs>
-                <Tab fx:id="tabTransiciones" disable="true" text="Transiciones de ER">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="309.0" prefWidth="900.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" maxHeight="380.0" prefHeight="380.0" prefWidth="515.0" spacing="20.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label text="1. Transiciones" />
+                              <TextArea fx:id="tATransiciones" maxWidth="300.0" prefHeight="250.0" prefWidth="111.0" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="360.0" prefWidth="588.0" spacing="20.0">
+                           <children>
+                              <Label text="2. Cierre Lambda" />
+                              <TextArea fx:id="tACierreLambda" maxWidth="300.0" prefHeight="250.0" prefWidth="196.0" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" maxWidth="650.0" prefHeight="360.0" prefWidth="609.0" spacing="10.0">
+                           <children>
+                              <Label text="3. Evaluar Cierre Lambda" />
+                              <Label text="Nota. El espacio en blanco representa vacio">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="tAEvaluarCierreLambda" prefHeight="250.0" prefWidth="217.0" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" maxWidth="650.0" prefHeight="360.0" prefWidth="607.0" spacing="20.0">
+                           <children>
+                              <Label text="4. Estados Resultantes" />
+                              <TextArea fx:id="tAEstadosResultantes" prefHeight="250.0" prefWidth="200.0" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="304.0" prefWidth="900.0">
+                     <children>
+                        <HBox prefHeight="469.0" prefWidth="700.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="450.0" spacing="20.0">
                                  <children>
-                                    <Label text="Transiciones" />
-                                    <TextArea fx:id="tATransiciones" maxWidth="300.0" prefHeight="300.0" prefWidth="200.0" />
-                                    <Button mnemonicParsing="false" onAction="#transiciones" text="Continuar" />
+                                    <Label text="5. Automata Finito Resultante" />
+                                    <TextArea fx:id="tAAFResultante" prefHeight="250.0" prefWidth="410.0" />
                                  </children>
                                  <padding>
-                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                    <Insets left="20.0" right="20.0" top="10.0" />
                                  </padding>
                               </VBox>
                            </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-                <Tab fx:id="tabCierreLambda" disable="true" text="Cierre Lambda">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        </HBox>
+                        <HBox prefHeight="469.0" prefWidth="700.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0">
+                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="20.0">
                                  <children>
-                                    <Label text="Cierre Lambda" />
-                                    <TextArea fx:id="tACierreLambda" maxWidth="300.0" prefHeight="300.0" prefWidth="200.0" />
-                                    <Button mnemonicParsing="false" onAction="#cierreLambda" text="Continuar" />
+                                    <Label text="6. Grupos de estado" />
+                                    <TextArea fx:id="tAGrupos" prefHeight="250.0" prefWidth="200.0" />
                                  </children>
                                  <padding>
-                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                    <Insets left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="20.0">
+                                 <children>
+                                    <Label text="7. AFD Minimo" />
+                                    <TextArea fx:id="tAAFDM" prefHeight="250.0" prefWidth="200.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" top="10.0" />
                                  </padding>
                               </VBox>
                            </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
-                  <Tab fx:id="tabNuevosEstados" disable="true" text="Nuevos Estados">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="469.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="925.0" spacing="30.0">
-                                       <children>
-                                          <Label text="Evaluar Cierre Lambda" />
-                                          <TextArea fx:id="tAEvaluarCierreLambda" prefHeight="300.0" prefWidth="200.0" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0">
-                                       <children>
-                                          <Label text="Estados Resultantes" />
-                                          <TextArea fx:id="tAEstadosResultantes" prefHeight="300.0" prefWidth="200.0" />
-                                          <Button mnemonicParsing="false" onAction="#nuevosEstados" text="Continuar" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </children></AnchorPane>
-                    </content>
-                  </Tab>
-                  <Tab fx:id="tabAsignarVariables" disable="true" text="Asignar Variables">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="469.0" prefWidth="700.0">
-                                 <children>
-                                    <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0">
-                                       <children>
-                                          <Label text="Asignar variables a los estados" />
-                                          <TextArea fx:id="tAAsignarVariables" prefHeight="300.0" prefWidth="200.0" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0">
-                                       <children>
-                                          <Label text="Automata Finito Resultante" />
-                                          <TextArea fx:id="tAAFResultante" prefHeight="300.0" prefWidth="200.0" />
-                                          <Button mnemonicParsing="false" onAction="#asignarVariables" text="Continuar" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </children></AnchorPane>
-                    </content>
-                  </Tab>
-                  <Tab fx:id="tabAFDM" disable="true" text="AFD Minimo">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <HBox prefHeight="469.0" prefWidth="700.0">
-                                 <children>
-                                    <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0">
-                                       <children>
-                                          <Label text="Grupos de estado" />
-                                          <TextArea fx:id="tAGrupos" prefHeight="300.0" prefWidth="200.0" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </VBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="30.0">
-                                       <children>
-                                          <Label text="Automata Finito Deterministico Minimo" />
-                                          <TextArea fx:id="tAAFDM" prefHeight="300.0" prefWidth="200.0" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" right="20.0" top="20.0" />
-                                       </padding>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                           </children></AnchorPane>
-                    </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </center>
       </BorderPane>
    </children>

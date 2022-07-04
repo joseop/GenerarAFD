@@ -32,6 +32,6 @@ public class TransicionER {
     }
 
     public String mostrar() {
-        return getEstadoOrigen() + "  ---  " + getSimboloIngresado() + "  --->  " + getEstadoFinal();
+        return getEstadoOrigen() + "  --  " + getSimboloIngresado() + "  -->  " + getEstadoFinal();
     }
 }
