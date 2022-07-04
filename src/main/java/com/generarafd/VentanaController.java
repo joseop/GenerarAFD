@@ -3,8 +3,6 @@ package com.generarafd;
 import com.generarafd.modelo.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.event.ActionEvent;
-
 public class VentanaController {
     @FXML
     private TextArea tAAFDM;
@@ -34,12 +32,12 @@ public class VentanaController {
     }
 
     @FXML
-    void cerrar(ActionEvent event) {
+    void cerrar() {
         System.exit(0);
     }
 
     @FXML
-    void convertir(ActionEvent event) {
+    void convertir() {
         vaciar();
         new LeerER(tFER.getText());
         tATransiciones.setText(elementos.stringER());
