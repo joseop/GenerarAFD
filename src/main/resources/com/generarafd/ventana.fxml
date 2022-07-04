@@ -48,7 +48,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="360.0" prefWidth="588.0" spacing="20.0">
                            <children>
-                              <Label text="2. Cierre Lambda" />
+                              <Label text="2. Cierre λ" />
                               <TextArea fx:id="tACierreLambda" maxWidth="300.0" prefHeight="250.0" prefWidth="196.0" />
                            </children>
                            <padding>
@@ -57,7 +57,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" maxWidth="650.0" prefHeight="360.0" prefWidth="609.0" spacing="10.0">
                            <children>
-                              <Label text="3. Evaluar Cierre Lambda" />
+                              <Label text="3. Evaluar Cierre λ" />
                               <Label text="Nota. El espacio en blanco representa vacio">
                                  <font>
                                     <Font size="9.0" />
@@ -82,41 +82,33 @@
                   </HBox>
                   <HBox prefHeight="304.0" prefWidth="900.0">
                      <children>
-                        <HBox prefHeight="469.0" prefWidth="700.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="304.0" prefWidth="785.0" spacing="20.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="450.0" spacing="20.0">
-                                 <children>
-                                    <Label text="5. Automata Finito Resultante" />
-                                    <TextArea fx:id="tAAFResultante" prefHeight="250.0" prefWidth="410.0" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="20.0" right="20.0" top="10.0" />
-                                 </padding>
-                              </VBox>
+                              <Label text="5. Automata Finito Resultante" />
+                              <TextArea fx:id="tAAFResultante" prefHeight="250.0" prefWidth="410.0" />
                            </children>
-                        </HBox>
-                        <HBox prefHeight="469.0" prefWidth="700.0">
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="304.0" prefWidth="619.0" spacing="20.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="20.0">
-                                 <children>
-                                    <Label text="6. Grupos de estado" />
-                                    <TextArea fx:id="tAGrupos" prefHeight="250.0" prefWidth="200.0" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="20.0" right="20.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="469.0" prefWidth="700.0" spacing="20.0">
-                                 <children>
-                                    <Label text="7. AFD Minimo" />
-                                    <TextArea fx:id="tAAFDM" prefHeight="250.0" prefWidth="200.0" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="20.0" right="20.0" top="10.0" />
-                                 </padding>
-                              </VBox>
+                              <Label text="6. Grupos de estado" />
+                              <TextArea fx:id="tAGrupos" prefHeight="250.0" prefWidth="200.0" />
                            </children>
-                        </HBox>
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="304.0" prefWidth="800.0" spacing="20.0">
+                           <children>
+                              <Label text="7. AFD Minimo" />
+                              <TextArea fx:id="tAAFDM" prefHeight="250.0" prefWidth="200.0" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                        </VBox>
                      </children>
                   </HBox>
                </children>

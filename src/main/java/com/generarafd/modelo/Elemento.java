@@ -122,14 +122,6 @@ public class Elemento {
         return cadena.toString();
     }
 
-    public String stringAFDNT() {//crear Matriz
-        String cadena = "";
-        for (int i = 0; i < AFDVariables.size(); i++) {
-
-        }
-        return cadena.toString();
-    }
-
     public void addAFDN(TransicionAFD transicionAFD) {
         AFDVariables.add(transicionAFD);
     }
@@ -158,5 +150,40 @@ public class Elemento {
         simbolos.clear();
         AFDVariables.clear();
         AFDMinimo.clear();
+    }
+
+    public String representacionAFD(){
+        String cadena="     ";
+        for (int i = 0; i < simbolos.size(); i++) {
+            cadena=cadena+simbolos.get(i)+"   ";
+        }
+        cadena=cadena+"   ";
+        for (int i = 0; i <AFDVariables.size(); i+=simbolos.size()) {
+            cadena=cadena+"\n"+AFDVariables.get(i).getEstadoOrigen()+"  |";
+            for (int j = 0; j < simbolos.size(); j++) {
+                cadena=cadena+AFDVariables.get(i+j).getEstadoFinal()+" | ";
+            }
+            if (AFDVariables.get(i).isAceptacion()) {
+                cadena=cadena+" 1";
+            }else {cadena=cadena+" 0";}
+        }
+        return cadena;
+    }
+    public String representacionAFDM(){
+        String cadena="       ";
+        for (int i = 0; i < simbolos.size(); i++) {
+            cadena=cadena+simbolos.get(i)+"    ";
+        }
+        cadena=cadena+"   ";
+        for (int i = 0; i <AFDMinimo.size(); i+=simbolos.size()) {
+            cadena=cadena+"\n"+AFDMinimo.get(i).getEstadoOrigen()+"   |";
+            for (int j = 0; j < simbolos.size(); j++) {
+                cadena=cadena+AFDMinimo.get(i+j).getEstadoFinal()+"|";
+            }
+            if (AFDMinimo.get(i).isAceptacion()) {
+                cadena=cadena+"    1";
+            }else {cadena=cadena+"    0";}
+        }
+        return cadena;
     }
 }

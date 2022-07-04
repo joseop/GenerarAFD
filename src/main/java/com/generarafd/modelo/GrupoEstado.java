@@ -1,7 +1,7 @@
 package com.generarafd.modelo;
 
 public class GrupoEstado {
-    private String estado;
+    private final String estado;
     private int grupo;
 
     public GrupoEstado(String estado, int grupo) {

@@ -44,8 +44,8 @@ public class VentanaController {
         tACierreLambda.setText(CierreLambda.stringMatriz());
         tAEvaluarCierreLambda.setText(elementos.stringAFD());
         tAEstadosResultantes.setText(ConstruirAFDSinLambda.stringNuevosEstados());
-        tAAFResultante.setText(elementos.stringAFDN());
+        tAAFResultante.setText(elementos.representacionAFD());
         tAGrupos.setText(ParticionesDeEstado.stringGE());
-        tAAFDM.setText(elementos.stringAFDMinimo());
+        tAAFDM.setText(elementos.representacionAFDM());
     }
 }

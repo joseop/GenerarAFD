@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class CierreLambda {
-    private static Elemento elementos = new Elemento();
+    private static final Elemento elementos = new Elemento();
     private static final ArrayList<Boolean> yaProcesado = new ArrayList<>();
     private static int[][] matrizCierreLambda = new int[elementos.getAceptacion()][elementos.getAceptacion()];
     public static void vaciar() {
@@ -17,10 +17,6 @@ public class CierreLambda {
         new ConstruirAFDSinLambda(matrizCierreLambda);
 
     }
-    public CierreLambda(boolean t) {
-
-    }
-
     private void buscarCierreLambda() {
         crearArrayListBoolean();
         for (int i = 0; i < matrizCierreLambda.length; i++) {
