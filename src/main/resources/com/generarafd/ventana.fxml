@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,12 +16,18 @@
    <children>
       <BorderPane layoutX="191.0" layoutY="150.0" prefHeight="500.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="CL" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" layoutX="86.0" layoutY="81.0" prefHeight="500.0" prefWidth="200.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox fx:id="vboxleft" alignment="CENTER" layoutX="86.0" layoutY="81.0" prefHeight="500.0" prefWidth="200.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label text="EXPRESION REGULAR" />
-                        <Label text="Ingresar ER" />
+                        <Label text="EXPRESION REGULAR">
+                           <effect>
+                              <Blend />
+                           </effect></Label>
+                        <Label text="Ingresar ER">
+                           <effect>
+                              <Blend />
+                           </effect></Label>
                         <TextField fx:id="tFER" />
                         <Button fx:id="btnConvertir" mnemonicParsing="false" onAction="#convertir" text="Convertir" />
                         <Button mnemonicParsing="false" onAction="#cerrar" text="Cerrar Programa" />
@@ -33,7 +40,7 @@
             </AnchorPane>
          </left>
          <center>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="vbc" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefHeight="309.0" prefWidth="900.0">
                      <children>
