@@ -3,12 +3,15 @@ package com.generarafd.modelo;
 import java.util.Objects;
 import java.util.Stack;
 
+/*Esta clase permite leer la expresion regular recibida como parametro, para procesarla
+  y asi comenzar a crear objetos de TransicionER, usando construccion basica de thompson*/
 public class LeerER {
 
     private final String expresionRegular;
     private final Elemento elementos = new Elemento();
     private final ConstruccionBasicaThompson operacion = new ConstruccionBasicaThompson();
 
+    //Constructor
     public LeerER(String expresionRegular) {
         this.expresionRegular = expresionRegular;
         iniciarConexion();
@@ -16,12 +19,15 @@ public class LeerER {
         new CierreLambda();
     }
 
+    //Este metodo construye la conexion inicial
     private void iniciarConexion() {
         elementos.addTransicionER(operacion.reescribirExpresion(expresionRegular, 1));
         conectarTransiciones();
         capturarSimbolosDeLaER();
     }
 
+    //Este metodo se encarga de evaluar los simbolos de las transiciones para seguir con la construccion
+    // y conectar las transiciones
     private void conectarTransiciones() {
         int i = 0;
         while (i < elementos.getSizeER()) {
@@ -35,6 +41,8 @@ public class LeerER {
         }
     }
 
+    //Este metodo se encarga de crear la nueva transicion haciendo uso de las construcciones basicas de thompson
+    //con su respectivo operando, y teniendo en cuenta el orden de prioridad
     private void nuevaTransicion(int estadoBase, String expresionReg) {
         int s = buscarDondeDividirLaER(expresionReg);
         if (s != 0) {
@@ -74,6 +82,7 @@ public class LeerER {
         }
     }
 
+    //Este metodo se encarga de buscar la posiciones del operando con mayor prioridad
     private int buscarDondeDividirLaER(String simbolo) {
         Stack<Boolean> parentesis = new Stack<>();
         int separador = 0;
@@ -98,6 +107,7 @@ public class LeerER {
         return separador;
     }
 
+    //Este metodo se encarga de capturar los diferentes simbolos o expresiones de la Expresion regular
     private void capturarSimbolosDeLaER() {
         for (int i = 0; i < elementos.getSizeER(); i++) {
             String nulo = "λ";
@@ -107,6 +117,7 @@ public class LeerER {
         }
     }
 
+    //Este metodo verifica si un simbolo existe en la lista de simbolos
     private boolean existeEnSimbolos(String simbolo) {
         for (int i = 0; i < elementos.getSizeSimbolos(); i++) {
             if (elementos.getSimbolo(i).equals(simbolo)) {
