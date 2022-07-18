@@ -3,18 +3,8 @@ package com.generarafd;
 import com.generarafd.modelo.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.VBox;
 
 public class VentanaController {
-    @FXML
-    private AnchorPane CL;
-    @FXML
-    private VBox vbc;
-
-    @FXML
-    private VBox vboxleft;
     @FXML
     private TextArea tAAFDM;
     @FXML
@@ -59,4 +49,5 @@ public class VentanaController {
         tAGrupos.setText(ParticionesDeEstado.stringGE());
         tAAFDM.setText(elementos.representacionAFDM());
     }
+
 }
