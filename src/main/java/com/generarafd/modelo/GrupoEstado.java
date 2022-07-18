@@ -1,5 +1,6 @@
 package com.generarafd.modelo;
 
+//Esta clase permite crear objetos que representan los grupos y los estados
 public class GrupoEstado {
     private final String estado;
     private int grupo;

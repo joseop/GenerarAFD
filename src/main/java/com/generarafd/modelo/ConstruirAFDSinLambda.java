@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
+/*Esta clase permite crear el AFD sin transiciones lambdas*/
 public class ConstruirAFDSinLambda {
 
     private final Elemento elementos = new Elemento();
@@ -12,29 +13,34 @@ public class ConstruirAFDSinLambda {
     static final ArrayList<String> estadosEnString = new ArrayList<>();
     private int[][] matrizCierreLambda;
 
+    //Este metodo vacia las listas cuando se evalua una nueva ER
     public static void vaciar() {
         nuevosEstadosEnVectores.clear();
         estadosEnString.clear();
-
     }
 
+    //Constructor vacio
     public ConstruirAFDSinLambda() {
-
     }
 
+    //Constructor
     public ConstruirAFDSinLambda(int[][] matriz) {
         this.matrizCierreLambda = matriz;
         inicial();
         new AsignarVariableNumericaAEstado();
     }
+
+    //Este metodo retorna el tamaño de la lista
     public int getEstadosssSize() {
         return estadosEnString.size();
     }
 
+    //Este metodo retorna el elemento de la posicion i de la lista estadosEnString
     public String getEstadoss(int i) {
         return estadosEnString.get(i);
     }
 
+    //Este metodo evalua el prime cierre de lambda de la matrizCierreLambda
     private void inicial() {
         int[] aux = new int[matrizCierreLambda.length];
         for (int i = 0; i < matrizCierreLambda.length; i++) {
@@ -46,6 +52,7 @@ public class ConstruirAFDSinLambda {
         evaluarCierreLambdaInicial();
     }
 
+    //Este metodo retorna una cadena con los nuevos estados despues de evaluar los cierreLambda de cada estado
     public static String stringNuevosEstados() {
         StringBuilder cadena = new StringBuilder();
         int i = 1;
@@ -56,6 +63,7 @@ public class ConstruirAFDSinLambda {
         return cadena.toString();
     }
 
+    //Este metodo evalua los cierreLambda para obtener los nuevos estados
     private void evaluarCierreLambdaInicial() {
         int n = 0;
         while (n < nuevosEstadosEnVectores.size()) {//Recorre los estados en vectores
@@ -82,6 +90,7 @@ public class ConstruirAFDSinLambda {
 
     }
 
+    //En este metodo se usa para obtener una transicion AFD
     private TransicionAFD captarTran(int[] vectorEstadoInicial, String simbolo, int[] vectorEstadoFinal) {
         StringBuilder estadoInicial = new StringBuilder();
         StringBuilder estadoFinal = new StringBuilder();
@@ -109,7 +118,7 @@ public class ConstruirAFDSinLambda {
 
     }
 
-
+    //Este metodo se usa
     private boolean existeEnNuevosEstados(int[] vector) {
         for (int[] estado : nuevosEstadosEnVectores) {
             if (Arrays.equals(vector, estado)) {
@@ -119,6 +128,7 @@ public class ConstruirAFDSinLambda {
         return false;
     }
 
+    //Este metodo se usa para verificar si ya existe un estado similiar
     private boolean existeCadenaEnEstadosString(String nuevoEstadoEnString) {
         for (String s : estadosEnString) {
             if (Objects.equals(s, nuevoEstadoEnString)) {
@@ -128,12 +138,12 @@ public class ConstruirAFDSinLambda {
         return true;
     }
 
+    //Este metodo agrega el vector a la lista
     private void agregarNuevoEstadoEnVector(int[] vector) {
-
         nuevosEstadosEnVectores.add(vector);
-
     }
 
+    //Este metodo se usa para agregar un estado al vector y asi crear los nuevos estados
     private void agregarEstadoAVector(int estadoFinal, int[] vector) {
         for (int i = 0; i < vector.length; i++) {
             if (vector[i] == 0) {
@@ -148,6 +158,7 @@ public class ConstruirAFDSinLambda {
         }
     }
 
+    //Este metodo se usa para verificar si un estado ya existe en el vector
     private boolean estaEnVector(int[] vector, int elemento) {
         for (int i : vector) {
             if (i == elemento) {

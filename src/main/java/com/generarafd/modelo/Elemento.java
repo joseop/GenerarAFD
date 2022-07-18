@@ -2,6 +2,7 @@ package com.generarafd.modelo;
 
 import java.util.ArrayList;
 
+//Esta clase permite crear las listas donde se almacenaran las transiciones de la ER y los diferentes AFD
 public class Elemento {
     private static final ArrayList<TransicionAFD> transicionesAFD = new ArrayList<>();
     private static final ArrayList<TransicionER> transicionesER = new ArrayList<>();
@@ -143,7 +144,7 @@ public class Elemento {
         return AFDMinimo.size();
     }
 
-
+    //Metodo para vaciar las listas
     public void vaciar() {
         transicionesAFD.clear();
         transicionesER.clear();
@@ -152,6 +153,7 @@ public class Elemento {
         AFDMinimo.clear();
     }
 
+    //Metodo que retorna una cadena del AFD
     public String representacionAFD(){
         String cadena="     ";
         for (int i = 0; i < simbolos.size(); i++) {
@@ -169,6 +171,8 @@ public class Elemento {
         }
         return cadena;
     }
+
+    //Metodo que retorna una cadena del AFD minimo
     public String representacionAFDM(){
         String cadena="       ";
         for (int i = 0; i < simbolos.size(); i++) {
