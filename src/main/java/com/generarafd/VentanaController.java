@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class VentanaController {
+    ReconocimientoDescendente reconocer;
     @FXML
     private TextArea tAAFDM;
     @FXML
@@ -39,7 +40,9 @@ public class VentanaController {
 
     @FXML
     void convertir() {
+
         vaciar();
+        reconocer = new ReconocimientoDescendente(tFER.getText());
         new LeerER(tFER.getText());
         tATransiciones.setText(elementos.stringER());
         tACierreLambda.setText(CierreLambda.stringMatriz());
