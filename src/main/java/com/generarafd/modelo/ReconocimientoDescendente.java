@@ -1,5 +1,8 @@
 package com.generarafd.modelo;
 
+import javax.swing.JOptionPane;
+
+import java.awt.*;
 import java.util.Stack;
 
 public class ReconocimientoDescendente {
@@ -7,221 +10,225 @@ public class ReconocimientoDescendente {
     private Stack<String> pila = new Stack<>();
     private String simbolo;
     private int x = 0;
+    private boolean salir = false, correcto=false;
 
     //Constructor
     public ReconocimientoDescendente(String er) {
         this.eR = er + "-";
         leerEr();
-        pila.push("λ");//Indicador de pila vacia
-        pila.push("A");//no Terminar inicial de la G
     }
 
     public void leerEr() {
+        pila.push("λ");//Indicador de pila vacia
+        pila.push("A");//no Terminar inicial de la G
         simbolo = String.valueOf(eR.charAt(x));
-        while (!finSecuencia(simbolo)) {
+        while (!salir) {
             switch (pila.lastElement()) {
                 case "A":
                     switch (simbolo) {
-                        case "|":
+                        case "|":salir=true;
                             break;
-                        case ".":
+                        case ".":salir=true;
                             break;
                         case "(":
-                            break;
-                        case ")":
-                            break;
-                        case "0":
-                            break;
                         case "1":
+                        case "0":
+                            remplazar("BC");
                             break;
-                        case "*":
+                        case ")":salir=true;
                             break;
-                        case "+":
+                        case "*":salir=true;
                             break;
-                        case "-":
+                        case "+":salir=true;
+                            break;
+                        case "-":salir=true;
                             break;
                     }
                     break;
                 case "B":
                     switch (simbolo) {
                         case "|":
+                            remplazar("BC");
+                            avance();
                             break;
-                        case ".":
+                        case ".":salir=true;
                             break;
-                        case "(":
+                        case "(":salir=true;
                             break;
                         case ")":
-                            break;
-                        case "0":
-                            break;
-                        case "1":
-                            break;
-                        case "*":
-                            break;
-                        case "+":
-                            break;
                         case "-":
+                            desapilar();
+                            break;
+                        case "0":salir=true;
+                            break;
+                        case "1":salir=true;
+                            break;
+                        case "*":salir=true;
+                            break;
+                        case "+":salir=true;
                             break;
                     }
                     break;
                 case "C":
                     switch (simbolo) {
-                        case "|":
+                        case "|":salir=true;
                             break;
-                        case ".":
+                        case ".":salir=true;
                             break;
                         case "(":
-                            break;
-                        case ")":
-                            break;
                         case "0":
-                            break;
                         case "1":
+                            remplazar("ED");
                             break;
-                        case "*":
+                        case ")":salir=true;
                             break;
-                        case "+":
+                        case "*":salir=true;
                             break;
-                        case "-":
+                        case "+":salir=true;
+                            break;
+                        case "-":salir=true;
                             break;
                     }
                     break;
                 case "D":
                     switch (simbolo) {
-                        case "|":
+                        case "|":salir=true;
                             break;
-                        case ".":
+                        case ".":salir=true;
                             break;
                         case "(":
-                            break;
-                        case ")":
-                            break;
-                        case "0":
-                            break;
                         case "1":
+                        case "0":
+                            remplazar("GF");
                             break;
-                        case "*":
+                        case ")":salir=true;
                             break;
-                        case "+":
+                        case "*":salir=true;
                             break;
-                        case "-":
+                        case "+":salir=true;
+                            break;
+                        case "-":salir=true;
                             break;
                     }
                     break;
                 case "E":
                     switch (simbolo) {
                         case "|":
+                        case "-":
+                        case ")":
+                            desapilar();
                             break;
                         case ".":
+                            remplazar("ED");
+                            avance();
                             break;
-                        case "(":
+                        case "(":salir=true;
                             break;
-                        case ")":
+                        case "0":salir=true;
                             break;
-                        case "0":
+                        case "1":salir=true;
                             break;
-                        case "1":
+                        case "*":salir=true;
                             break;
-                        case "*":
-                            break;
-                        case "+":
-                            break;
-                        case "-":
+                        case "+":salir=true;
                             break;
                     }
                     break;
                 case "F":
                     switch (simbolo) {
-                        case "|":
+                        case "|":salir=true;
                             break;
-                        case ".":
+                        case ".":salir=true;
                             break;
                         case "(":
+                            remplazar(")A");
+                            avance();
                             break;
-                        case ")":
+                        case ")":salir=true;
                             break;
                         case "0":
-                            break;
                         case "1":
+                            desapilar();
+                            avance();
                             break;
-                        case "*":
+                        case "*":salir=true;
                             break;
-                        case "+":
+                        case "+":salir=true;
                             break;
-                        case "-":
+                        case "-":salir=true;
                             break;
                     }
                     break;
                 case "G":
                     switch (simbolo) {
                         case "|":
-                            break;
                         case ".":
-                            break;
-                        case "(":
-                            break;
                         case ")":
+                        case "-":
+                            desapilar();
                             break;
-                        case "0":
+                        case "(":salir=true;
                             break;
-                        case "1":
+                        case "0":salir=true;
+                            break;
+                        case "1":salir=true;
                             break;
                         case "*":
-                            break;
                         case "+":
-                            break;
-                        case "-":
+                            desapilar();
+                            avance();
                             break;
                     }
                     break;
                 case ")":
                     switch (simbolo) {
-                        case "|":
+                        case "|":salir=true;
                             break;
-                        case ".":
+                        case ".":salir=true;
                             break;
-                        case "(":
+                        case "(":salir=true;
                             break;
                         case ")":
+                            desapilar();
+                            avance();
                             break;
-                        case "0":
+                        case "0":salir=true;
                             break;
-                        case "1":
+                        case "1":salir=true;
                             break;
-                        case "*":
+                        case "*":salir=true;
                             break;
-                        case "+":
+                        case "+":salir=true;
                             break;
-                        case "-":
+                        case "-":salir=true;
                             break;
                     }
                     break;
                 case "λ":
                     switch (simbolo) {
-                        case "|":
+                        case "|":salir=true;
                             break;
-                        case ".":
+                        case ".":salir=true;
                             break;
-                        case "(":
+                        case "(":salir=true;
                             break;
-                        case ")":
+                        case ")":salir=true;
                             break;
-                        case "0":
+                        case "0":salir=true;
                             break;
-                        case "1":
+                        case "1":salir=true;
                             break;
-                        case "*":
+                        case "*":salir=true;
                             break;
-                        case "+":
+                        case "+":salir=true;
                             break;
                         case "-":
+                            correcto=true;
+                            salir = true;
                             break;
                     }
                     break;
-
-
             }
-            avance();
         }
     }
 
@@ -229,11 +236,6 @@ public class ReconocimientoDescendente {
     private void avance() {
         x++;
         simbolo = String.valueOf(eR.charAt(x));
-    }
-
-    //Este metodo nos ayudara a controlar el ciclo y el recorrido
-    private boolean finSecuencia(String simb) {
-        return simb.equals("-");
     }
 
     private void desapilar() {
@@ -248,5 +250,8 @@ public class ReconocimientoDescendente {
         }
     }
 
-
+    //Este metodo se usara para retornar un boolean en la que indicara si la expresion es correc
+    public boolean isCorrecto() {
+        return correcto;
+    }
 }

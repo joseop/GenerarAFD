@@ -3,6 +3,8 @@ package com.generarafd;
 import com.generarafd.modelo.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javax.swing.JOptionPane;
+
 
 public class VentanaController {
     ReconocimientoDescendente reconocer;
@@ -40,17 +42,26 @@ public class VentanaController {
 
     @FXML
     void convertir() {
-
-        vaciar();
         reconocer = new ReconocimientoDescendente(tFER.getText());
-        new LeerER(tFER.getText());
-        tATransiciones.setText(elementos.stringER());
-        tACierreLambda.setText(CierreLambda.stringMatriz());
-        tAEvaluarCierreLambda.setText(elementos.stringAFD());
-        tAEstadosResultantes.setText(ConstruirAFDSinLambda.stringNuevosEstados());
-        tAAFResultante.setText(elementos.representacionAFD());
-        tAGrupos.setText(ParticionesDeEstado.stringGE());
-        tAAFDM.setText(elementos.representacionAFDM());
+
+        if (reconocer.isCorrecto()) {
+            JOptionPane.showMessageDialog(null ,"Expresion regular correcta","Expresion Regular",JOptionPane.INFORMATION_MESSAGE);
+
+            vaciar();
+            new LeerER(tFER.getText());
+            tATransiciones.setText(elementos.stringER());
+            tACierreLambda.setText(CierreLambda.stringMatriz());
+            tAEvaluarCierreLambda.setText(elementos.stringAFD());
+            tAEstadosResultantes.setText(ConstruirAFDSinLambda.stringNuevosEstados());
+            tAAFResultante.setText(elementos.representacionAFD());
+            tAGrupos.setText(ParticionesDeEstado.stringGE());
+            tAAFDM.setText(elementos.representacionAFDM());
+        }
+        else {
+            JOptionPane.showMessageDialog(null ,"Por favor verificar la expresion regular e intentelo de nuevo","Error Encontrado",JOptionPane.ERROR_MESSAGE);
+            vaciar();
+        }
+
     }
 
 }
