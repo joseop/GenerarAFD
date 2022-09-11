@@ -297,7 +297,7 @@ public class ReconocimientoDescendente {
                             salir = true;
                             break;
                         case "-":
-                            JOptionPane.showMessageDialog(null, "46",
+                            JOptionPane.showMessageDialog(null, "Falta un cierre parentesis",
                                     "Verificar Error", JOptionPane.ERROR_MESSAGE);
                             salir = true;
                             break;
