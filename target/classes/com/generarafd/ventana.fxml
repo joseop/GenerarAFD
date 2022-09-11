@@ -29,8 +29,32 @@
                               <Blend />
                            </effect></Label>
                         <TextField fx:id="tFER" text="(0|1.0*.1)*.0*" />
-                        <Button fx:id="btnConvertir" mnemonicParsing="false" onAction="#convertir" text="Convertir" />
+                        <Button fx:id="btnConvertir" mnemonicParsing="false" onAction="#convertir" text="Verificar y Convertir" />
                         <Button mnemonicParsing="false" onAction="#cerrar" text="Cerrar Programa" />
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="179.0">
+                           <children>
+                              <Label text="Simbolos Reservados" />
+                              <Label text="A,B,C,D,E,F,G,.,|(,),+,*,λ.-" />
+                              <Label text="Operandos">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="0,1" />
+                              <Label text="Operadores">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text=".,|" />
+                              <Label text="Operadores Elevados">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="+,*" />
+                           </children>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />
